@@ -1,0 +1,49 @@
+# Backup files
+backup_*/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Node modules (if added later)
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Large image files (optional - uncomment if needed)
+# *.jpg
+# *.png
+# *.jpeg
+# *.gif
+# *.webp
+
+# PowerShell execution policy files
+*.ps1.bak
+
+# Windows thumbnail cache
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Archive files
+*.zip
+*.rar
+*.7z
