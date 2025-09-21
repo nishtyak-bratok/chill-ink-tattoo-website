@@ -82,3 +82,7 @@ Run `add_seo.ps1` to add meta tags, structured data, and sitemap.
 ### Analytics
 
 Run `setup_analytics.ps1` to configure Google Analytics and other tracking tools.
+=======
+# chill-ink-tattoo-website
+Professional tattoo studio website with master galleries and portfolio
+
