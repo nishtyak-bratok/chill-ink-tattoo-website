@@ -4,190 +4,312 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chill Ink Tattoo - Художественная татуировка в Казани</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'pacifico': ['Pacifico', 'cursive'],
+                    },
+                    colors: {
+                        'purple': {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        },
+                        'orange': {
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#dc2626',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .bg-gradient-purple-orange {
+            background: linear-gradient(135deg, #8b5cf6 0%, #f97316 100%);
+        }
+        .text-gradient-purple-orange {
+            background: linear-gradient(135deg, #8b5cf6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen bg-black text-white">
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <img src="logo.png" alt="Chill Ink Tattoo" class="logo-img">
-                    <span class="logo-text">Chill Ink Tattoo</span>
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 py-2">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <img src="logo.png" alt="Chill Ink Tattoo" class="w-20 h-20 rounded-full">
+                    <span class="text-3xl font-bold text-white font-pacifico tracking-wide">Chill Ink Tattoo</span>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Главная</a></li>
-                    <li><a href="#about" class="nav-link">О нас</a></li>
-                    <li><a href="#services" class="nav-link">Услуги</a></li>
-                    <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
-                    <li><a href="#masters" class="nav-link">Мастера</a></li>
-                    <li><a href="#contact" class="nav-link">Контакты</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="scrollToSection('hero')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Главная</button>
+                    <button onclick="scrollToSection('about')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">О нас</button>
+                    <button onclick="scrollToSection('services')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Услуги</button>
+                    <button onclick="scrollToSection('portfolio')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Портфолио</button>
+                    <button onclick="scrollToSection('artists')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Мастера</button>
+                    <button onclick="scrollToSection('contact')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Контакты</button>
+                    <button onclick="scrollToSection('contact')" class="bg-gradient-to-r from-purple-600 to-orange-600 text-white px-6 py-2 rounded-full hover:from-purple-700 hover:to-orange-700 transition-all duration-200 transform hover:scale-105">
+                        Записаться
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden absolute top-20 left-0 right-0 bg-black/95 backdrop-blur-md border-t border-gray-800 hidden">
+                <div class="px-4 py-6 space-y-4">
+                    <button onclick="scrollToSection('hero')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Главная</button>
+                    <button onclick="scrollToSection('about')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">О нас</button>
+                    <button onclick="scrollToSection('services')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Услуги</button>
+                    <button onclick="scrollToSection('portfolio')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Портфолио</button>
+                    <button onclick="scrollToSection('artists')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Мастера</button>
+                    <button onclick="scrollToSection('contact')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Контакты</button>
+                    <button onclick="scrollToSection('contact')" class="w-full bg-gradient-to-r from-purple-600 to-orange-600 text-white px-6 py-3 rounded-full hover:from-purple-700 hover:to-orange-700 transition-all duration-200 mt-4">
+                        Записаться
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Chill Ink Tattoo</h1>
-            <p class="hero-subtitle">Художественная татуировка любой сложности в Казани</p>
-            <p class="hero-description">20+ мастеров с многолетним опытом. Перекрытие старых татуировок, исправление татуировок, лазерное удаление.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Записаться</a>
-                <a href="#portfolio" class="btn btn-secondary">Портфолио</a>
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black pt-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Main Content -->
+                <div class="mb-8">
+                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                        <span class="bg-gradient-to-r from-purple-500 via-orange-500 to-purple-500 bg-clip-text text-transparent">
+                            Chill Ink
+                        </span>
+                        <br />
+                        <span class="text-white">Tattoo Studio</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                        Профессиональные художественные татуировки в атмосфере комфорта и творчества. 
+                        Воплощаем ваши идеи в искусство на коже.
+                    </p>
+                </div>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap justify-center gap-8 mb-12">
+                    <div class="flex items-center space-x-2 text-gray-300">
+                        <i class="fas fa-star text-yellow-500 text-xl"></i>
+                        <span class="text-lg">5+ лет опыта</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-gray-300">
+                        <i class="fas fa-award text-purple-500 text-xl"></i>
+                        <span class="text-lg">500+ работ</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-gray-300">
+                        <i class="fas fa-clock text-orange-500 text-xl"></i>
+                        <span class="text-lg">Ежедневно 10:00-21:00</span>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button onclick="scrollToSection('contact')" class="bg-gradient-to-r from-purple-600 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                        Записаться на сеанс
+                    </button>
+                    <button onclick="scrollToSection('portfolio')" class="border-2 border-gray-500 text-gray-300 px-8 py-4 rounded-full text-lg font-semibold hover:border-purple-500 hover:text-purple-500 transition-all duration-300">
+                        Смотреть работы
+                    </button>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="mt-12 flex justify-center">
+                    <img 
+                        src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-fox.jpg" 
+                        alt="Интерьер тату студии Chill Ink" 
+                        class="w-full max-w-2xl rounded-2xl shadow-2xl"
+                    />
+                </div>
             </div>
         </div>
-        <div class="hero-image">
-            <div class="hero-placeholder">
-                <i class="fas fa-image"></i>
-                <p>Фото интерьера студии</p>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">О нашей студии</h2>
-                <p class="section-subtitle">Профессиональная тату-студия с многолетним опытом</p>
+    <section id="about" class="py-20 bg-gray-50 text-gray-900 pt-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">О нашей студии</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Профессиональная тату-студия с многолетним опытом работы в сфере художественной татуировки</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Chill Ink Tattoo</h3>
-                    <p>Мы - команда профессиональных тату-мастеров, работающих в сфере художественной татуировки уже много лет. Наша студия оснащена современным оборудованием и использует только качественные материалы.</p>
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-label">Мастеров</span>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6 text-gray-900">Chill Ink Tattoo</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Мы - команда профессиональных тату-мастеров, работающих в сфере художественной татуировки уже много лет. 
+                        Наша студия оснащена современным оборудованием и использует только качественные материалы.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-purple-600 mb-2">20+</div>
+                            <div class="text-gray-600">Мастеров</div>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">1000+</span>
-                            <span class="stat-label">Довольных клиентов</span>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-orange-600 mb-2">1000+</div>
+                            <div class="text-gray-600">Довольных клиентов</div>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Лет опыта</span>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-purple-600 mb-2">5+</div>
+                            <div class="text-gray-600">Лет опыта</div>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div class="about-placeholder">
-                        <i class="fas fa-users"></i>
-                        <p>Фото команды</p>
-                    </div>
+                
+                <div class="relative">
+                    <img 
+                        src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-dragon.jpg" 
+                        alt="Команда Chill Ink Tattoo" 
+                        class="w-full rounded-2xl shadow-2xl"
+                    />
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Наши услуги</h2>
-                <p class="section-subtitle">Полный спектр услуг по художественной татуировке</p>
+    <section id="services" class="py-20 bg-white text-gray-900 pt-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Наши услуги</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Полный спектр услуг по художественной татуировке</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-paint-brush text-white text-2xl"></i>
                     </div>
-                    <h3>Художественная татуировка</h3>
-                    <p>Татуировки любой сложности - от простых эскизов до сложных художественных композиций</p>
+                    <h3 class="text-xl font-bold mb-4 text-center">Художественная татуировка</h3>
+                    <p class="text-gray-600 text-center">Татуировки любой сложности - от простых эскизов до сложных художественных композиций</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-redo"></i>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-redo text-white text-2xl"></i>
                     </div>
-                    <h3>Перекрытие старых татуировок</h3>
-                    <p>Профессиональное перекрытие старых или неудачных татуировок новыми работами</p>
+                    <h3 class="text-xl font-bold mb-4 text-center">Перекрытие старых татуировок</h3>
+                    <p class="text-gray-600 text-center">Профессиональное перекрытие старых или неудачных татуировок новыми работами</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-tools text-white text-2xl"></i>
                     </div>
-                    <h3>Исправление татуировок</h3>
-                    <p>Коррекция и доработка существующих татуировок для улучшения их внешнего вида</p>
+                    <h3 class="text-xl font-bold mb-4 text-center">Исправление татуировок</h3>
+                    <p class="text-gray-600 text-center">Коррекция и доработка существующих татуировок для улучшения их внешнего вида</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laser"></i>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-laser text-white text-2xl"></i>
                     </div>
-                    <h3>Лазерное удаление</h3>
-                    <p>Современные методы удаления татуировок с помощью лазерных технологий</p>
+                    <h3 class="text-xl font-bold mb-4 text-center">Лазерное удаление</h3>
+                    <p class="text-gray-600 text-center">Современные методы удаления татуировок с помощью лазерных технологий</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Портфолио</h2>
-                <p class="section-subtitle">Лучшие работы наших мастеров</p>
+    <section id="portfolio" class="py-20 bg-gray-50 text-gray-900 pt-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Портфолио</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Лучшие работы наших мастеров</p>
             </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="portfolio-fox.jpg" alt="Лиса - работа Алексея Renoit" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <h4>Лиса</h4>
-                            <p>Реализм • Алексей Renoit</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-fox.jpg" alt="Лиса - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="text-white">
+                            <h4 class="text-xl font-bold mb-2">Лиса</h4>
+                            <p class="text-gray-300">Реализм • Алексей Renoit</p>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="portfolio-kitsune.jpg" alt="Маска Кицунэ - работа Алексея Renoit" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <h4>Маска Кицунэ</h4>
-                            <p>Японская традиция • Алексей Renoit</p>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-kitsune.jpg" alt="Маска Кицунэ - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="text-white">
+                            <h4 class="text-xl font-bold mb-2">Маска Кицунэ</h4>
+                            <p class="text-gray-300">Японская традиция • Алексей Renoit</p>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="portfolio-owl.jpg" alt="Сова - работа Алексея Renoit" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <h4>Сова</h4>
-                            <p>Реализм • Алексей Renoit</p>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-owl.jpg" alt="Сова - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="text-white">
+                            <h4 class="text-xl font-bold mb-2">Сова</h4>
+                            <p class="text-gray-300">Реализм • Алексей Renoit</p>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="portfolio-dragon.jpg" alt="Дракон - работа Алексея Renoit" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <h4>Дракон</h4>
-                            <p>Фэнтези • Алексей Renoit</p>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-dragon.jpg" alt="Дракон - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="text-white">
+                            <h4 class="text-xl font-bold mb-2">Дракон</h4>
+                            <p class="text-gray-300">Фэнтези • Алексей Renoit</p>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="portfolio-anime.jpg" alt="Аниме персонаж - работа Алексея Renoit" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <h4>Аниме персонаж</h4>
-                            <p>Аниме стиль • Алексей Renoit</p>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-anime.jpg" alt="Аниме персонаж - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="text-white">
+                            <h4 class="text-xl font-bold mb-2">Аниме персонаж</h4>
+                            <p class="text-gray-300">Аниме стиль • Алексей Renoit</p>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="portfolio-flower.jpg" alt="Цветок - работа Алексея Renoit" class="portfolio-img">
-                        <div class="portfolio-overlay">
-                            <h4>Цветок</h4>
-                            <p>Дотворк • Алексей Renoit</p>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-flower.jpg" alt="Цветок - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="text-white">
+                            <h4 class="text-xl font-bold mb-2">Цветок</h4>
+                            <p class="text-gray-300">Дотворк • Алексей Renoit</p>
                         </div>
                     </div>
                 </div>
@@ -195,115 +317,301 @@
         </div>
     </section>
 
-    <!-- Masters Section -->
-    <section id="masters" class="masters">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Наши мастера</h2>
-                <p class="section-subtitle">20+ профессиональных тату-мастеров с многолетним опытом</p>
+    <!-- Artists Section -->
+    <section id="artists" class="py-20 bg-white text-gray-900 pt-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Наши мастера</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">20+ профессиональных тату-мастеров с многолетним опытом</p>
             </div>
-            <div class="masters-grid">
-                <div class="master-card featured-master">
-                    <div class="master-photo">
-                        <img src="gallery/renoit/master-photo.jpg" alt="Алексей Renoit" class="master-img">
-                        <div class="master-overlay">
-                            <div class="master-stats">
-                                <span class="master-experience">10+ лет</span>
-                                <span class="master-style">Графика</span>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-purple-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('renoit')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-orange-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/renoit/master-photo.jpg', 'Алексей Renoit', 'Алексей Renoit', 'Мастер графической татуировки с 10+ летним опытом')">
+                            <img src="gallery/renoit/master-photo.jpg" alt="Алексей Renoit" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-purple-500/80 to-orange-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-lg font-bold">10+ лет</div>
+                                    <div class="text-sm">Графика</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-2xl"></i>
                             </div>
                         </div>
-                    </div>
-                    <h3>Алексей Renoit</h3>
-                    <p class="master-specialization">Специализация: Графика</p>
-                    <p class="master-experience-text">Опыт работы: 10+ лет</p>
-                    <div class="master-skills">
-                        <span class="skill-tag">Реализм</span>
-                        <span class="skill-tag">Японская традиция</span>
-                        <span class="skill-tag">Аниме</span>
-                        <span class="skill-tag">Дотворк</span>
+                        <h3 class="text-2xl font-bold mb-2">Алексей Renoit</h3>
+                        <p class="text-purple-600 font-semibold mb-2">Специализация: Графика</p>
+                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
+                        <p class="text-purple-600 font-bold mb-4">🏛️ Резидент студии</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Реализм</span>
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Японская традиция</span>
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Аниме</span>
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Дотворк</span>
+                        </div>
+                        <button onclick="openBookingModal('Алексей Renoit')" class="w-full bg-gradient-to-r from-purple-500 to-orange-500 text-white px-4 py-2 rounded-lg hover:from-purple-600 hover:to-orange-600 transition-all duration-200 transform hover:scale-105">
+                            Записаться
+                        </button>
                     </div>
                 </div>
-                <div class="master-card featured-master">
-                    <div class="master-photo">
-                        <img src="gallery/rocket/master-photo.jpg" alt="Булат Rocket" class="master-img">
-                        <div class="master-overlay">
-                            <div class="master-stats">
-                                <span class="master-experience">10+ лет</span>
-                                <span class="master-style">Графика</span>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-orange-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('rocket')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-purple-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/rocket/master-photo.jpg', 'Булат Rocket', 'Булат Rocket', 'Мастер графической татуировки с 10+ летним опытом')">
+                            <img src="gallery/rocket/master-photo.jpg" alt="Булат Rocket" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-orange-500/80 to-purple-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-lg font-bold">10+ лет</div>
+                                    <div class="text-sm">Графика</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-2xl"></i>
                             </div>
                         </div>
-                    </div>
-                    <h3>Булат Rocket</h3>
-                    <p class="master-specialization">Специализация: Графика</p>
-                    <p class="master-experience-text">Опыт работы: 10+ лет</p>
-                    <div class="master-skills">
-                        <span class="skill-tag">Реализм</span>
-                        <span class="skill-tag">Графика</span>
-                        <span class="skill-tag">Портреты</span>
-                        <span class="skill-tag">Черно-белое</span>
+                        <h3 class="text-2xl font-bold mb-2">Булат Rocket</h3>
+                        <p class="text-orange-600 font-semibold mb-2">Специализация: Графика</p>
+                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
+                        <p class="text-orange-600 font-bold mb-4">🏛️ Резидент студии</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Реализм</span>
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Графика</span>
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Портреты</span>
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Черно-белое</span>
+                        </div>
+                        <button onclick="openBookingModal('Булат Rocket')" class="w-full bg-gradient-to-r from-orange-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-orange-600 hover:to-purple-600 transition-all duration-200 transform hover:scale-105">
+                            Записаться
+                        </button>
                     </div>
                 </div>
-                <div class="master-card">
-                    <div class="master-placeholder">
-                        <i class="fas fa-user"></i>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-red-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('lozhkin')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 to-pink-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/lozhkin/master-photo.jpg', 'Арсений Ложкин', 'Арсений Ложкин', 'Мастер японской татуировки с 8+ летним опытом')">
+                            <img src="gallery/lozhkin/master-photo.jpg" alt="Арсений Ложкин" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-red-500/80 to-pink-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-lg font-bold">8+ лет</div>
+                                    <div class="text-sm">Японская татуировка</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Арсений Ложкин</h3>
+                        <p class="text-red-600 font-semibold mb-2">Специализация: Японская татуировка</p>
+                        <p class="text-gray-600 mb-2">Опыт работы: 8+ лет</p>
+                        <p class="text-red-600 font-bold mb-4">🏛️ Резидент студии</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Японская традиция</span>
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Иредзуми</span>
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Драконы</span>
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Сакура</span>
+                        </div>
+                        <button onclick="openBookingModal('Арсений Ложкин')" class="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105">
+                            Записаться
+                        </button>
                     </div>
-                    <h3>Мастер 3</h3>
-                    <p>Специализация: Лазерное удаление</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-pink-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('nastasia')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 to-red-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/nastasia/master-photo.jpg', 'Анастасия Красное Микеланджело', 'Анастасия \"Красное Микеланджело\"', 'Мастер реализма и чикано с 10+ летним опытом')">
+                            <img src="gallery/nastasia/master-photo.jpg" alt="Анастасия Красное Микеланджело" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-pink-500/80 to-red-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-lg font-bold">10+ лет</div>
+                                    <div class="text-sm">Реализм</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Анастасия "Красное Микеланджело"</h3>
+                        <p class="text-pink-600 font-semibold mb-2">Специализация: Реализм, Чикано</p>
+                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
+                        <p class="text-pink-600 font-bold mb-4">🏛️ Резидент студии</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Реализм</span>
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Чикано</span>
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Портреты</span>
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Цветные</span>
+                        </div>
+                        <button onclick="openBookingModal('Анастасия \"Красное Микеланджело\"')" class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all duration-200 transform hover:scale-105">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-teal-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('dina')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/dina/master-photo.jpg', 'Дина Synthetica', 'Дина Synthetica', 'Мастер акварельной и ботанической татуировки с 8-летним опытом')">
+                            <img src="gallery/dina/master-photo.jpg" alt="Дина Synthetica" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-teal-500/80 to-cyan-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-lg font-bold">8 лет</div>
+                                    <div class="text-sm">Акварель</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Дина Synthetica</h3>
+                        <p class="text-teal-600 font-semibold mb-2">Специализация: Акварельная, Ботаническая</p>
+                        <p class="text-gray-600 mb-2">Опыт работы: 8 лет</p>
+                        <p class="text-teal-600 font-bold mb-4">🏛️ Резидент студии</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Акварель</span>
+                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Ботаника</span>
+                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Цветные</span>
+                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Природа</span>
+                        </div>
+                        <button onclick="openBookingModal('Дина Synthetica')" class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-4 py-2 rounded-lg hover:from-teal-600 hover:to-cyan-600 transition-all duration-200 transform hover:scale-105">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-indigo-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('barabanov')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/barabanov/master-photo.jpg', 'Михаил Барабанов', 'Михаил Барабанов', 'Гостевой мастер neotraditional стиля из Ижевска с 10+ летним опытом')">
+                            <img src="gallery/barabanov/master-photo.jpg" alt="Михаил Барабанов" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-indigo-500/80 to-purple-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-lg font-bold">10+ лет</div>
+                                    <div class="text-sm">Neotraditional</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Михаил Барабанов</h3>
+                        <p class="text-indigo-600 font-semibold mb-2">Специализация: Neotraditional</p>
+                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
+                        <p class="text-indigo-600 font-bold mb-2">🌍 Гостевой мастер</p>
+                        <p class="text-gray-500 text-sm mb-4">г. Ижевск</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Neotraditional</span>
+                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Цветные</span>
+                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Современные</span>
+                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Ижевск</span>
+                        </div>
+                        <button onclick="openWaitingListModal('Михаил Барабанов')" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 transform hover:scale-105">
+                            Записаться в лист ожидания
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-emerald-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('flo')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/flo/master-photo.jpg', 'Фларик Ахметов', 'Фларик Ахметов', 'Мастер орнаментальной, полинезийской и борнео татуировки с 10+ летним опытом')">
+                            <img src="gallery/flo/master-photo.jpg" alt="Фларик Ахметов" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-emerald-500/80 to-teal-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-lg font-bold">10+ лет</div>
+                                    <div class="text-sm">Орнаментал</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Фларик Ахметов</h3>
+                        <p class="text-emerald-600 font-semibold mb-2">Специализация: Орнаментал, Полинезия, Борнео</p>
+                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
+                        <p class="text-emerald-600 font-bold mb-4">🏛️ Резидент студии</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Орнаментал</span>
+                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Полинезия</span>
+                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Борнео</span>
+                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Традиции</span>
+                        </div>
+                        <button onclick="openBookingModal('Фларик Ахметов')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-200 transform hover:scale-105">
+                            Записаться
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Контакты</h2>
-                <p class="section-subtitle">Свяжитесь с нами для записи на сеанс</p>
+    <section id="contact" class="py-20 bg-gradient-to-br from-black via-gray-900 to-black text-white pt-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Контакты</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Свяжитесь с нами для записи на сеанс</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-envelope text-white"></i>
+                        </div>
                         <div>
-                            <h4>Email</h4>
-                            <p>chillink.kzn@gmail.com</p>
+                            <h4 class="text-xl font-bold mb-1">Email</h4>
+                            <p class="text-gray-300">chillink.kzn@gmail.com</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-phone text-white"></i>
+                        </div>
                         <div>
-                            <h4>Телефон</h4>
-                            <p>+7 (939) 383-08-71</p>
+                            <h4 class="text-xl font-bold mb-1">Телефон</h4>
+                            <p class="text-gray-300">+7 (939) 383-08-71</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fab fa-telegram"></i>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fab fa-telegram text-white"></i>
+                        </div>
                         <div>
-                            <h4>Telegram</h4>
-                            <p>@chillinktattoos</p>
+                            <h4 class="text-xl font-bold mb-1">Telegram</h4>
+                            <p class="text-gray-300">@chillinktattoos</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fab fa-instagram"></i>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fab fa-instagram text-white"></i>
+                        </div>
                         <div>
-                            <h4>Instagram</h4>
-                            <p>@chill_ink_studio</p>
+                            <h4 class="text-xl font-bold mb-1">Instagram</h4>
+                            <p class="text-gray-300">@chill_ink_studio</p>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Ваше имя" required>
+                
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl">
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Ваше имя" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors">
                         </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="Телефон" required>
+                        <div>
+                            <input type="tel" placeholder="Телефон" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors">
                         </div>
-                        <div class="form-group">
-                            <textarea placeholder="Опишите желаемую татуировку" rows="4"></textarea>
+                        <div>
+                            <textarea placeholder="Опишите желаемую татуировку" rows="4" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors resize-none"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-purple-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105">
+                            Отправить заявку
+                        </button>
                     </form>
                 </div>
             </div>
@@ -311,94 +619,1598 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="logo.png" alt="Chill Ink Tattoo" class="logo-img">
-                    <span class="logo-text">Chill Ink Tattoo</span>
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">CI</span>
+                    </div>
+                    <span class="text-xl font-bold">Chill Ink Tattoo</span>
                 </div>
-                <div class="footer-links">
-                    <a href="#home">Главная</a>
-                    <a href="#about">О нас</a>
-                    <a href="#services">Услуги</a>
-                    <a href="#portfolio">Портфолио</a>
-                    <a href="#contact">Контакты</a>
+                
+                <div class="flex space-x-8">
+                    <a href="#hero" class="text-gray-400 hover:text-purple-500 transition-colors">Главная</a>
+                    <a href="#about" class="text-gray-400 hover:text-purple-500 transition-colors">О нас</a>
+                    <a href="#services" class="text-gray-400 hover:text-purple-500 transition-colors">Услуги</a>
+                    <a href="#portfolio" class="text-gray-400 hover:text-purple-500 transition-colors">Портфолио</a>
+                    <a href="#contact" class="text-gray-400 hover:text-purple-500 transition-colors">Контакты</a>
                 </div>
-                <div class="footer-social">
-                    <a href="https://instagram.com/chill_ink_studio" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://t.me/chillinktattoos" target="_blank"><i class="fab fa-telegram"></i></a>
+                
+                <div class="flex space-x-4">
+                    <a href="https://instagram.com/chill_ink_studio" target="_blank" class="w-10 h-10 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <i class="fab fa-instagram text-white"></i>
+                    </a>
+                    <a href="https://t.me/chillinktattoos" target="_blank" class="w-10 h-10 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <i class="fab fa-telegram text-white"></i>
+                    </a>
                 </div>
             </div>
-            <div class="footer-bottom">
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2024 Chill Ink Tattoo. Все права защищены.</p>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                mobileMenu.classList.add('hidden'); // Close mobile menu
+            }
+        }
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-black/95', 'backdrop-blur-md', 'shadow-lg');
+                header.classList.remove('bg-transparent');
+            } else {
+                header.classList.remove('bg-black/95', 'backdrop-blur-md', 'shadow-lg');
+                header.classList.add('bg-transparent');
+            }
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            if (!name || !phone) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+            
+            const messageText = `Новая заявка с сайта Chill Ink Tattoo:\n\nИмя: ${name}\nТелефон: ${phone}\nСообщение: ${message}`;
+            const telegramUrl = `https://t.me/chillinktattoos?text=${encodeURIComponent(messageText)}`;
+            window.open(telegramUrl, '_blank');
+            
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.bg-white, .bg-gray-50').forEach(section => {
+            const cards = section.querySelectorAll('.bg-white, .group');
+            cards.forEach(card => observer.observe(card));
+        });
+
+        // Add fade-in animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fade-in-up {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .animate-fade-in-up {
+                animation: fade-in-up 0.6s ease-out;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Master Gallery Data
+        const masterData = {
+            renoit: {
+                name: 'Алексей Renoit',
+                works: 36, // 38 - 2 (master-photo и дубликат work-27)
+                worksPerPage: 9,
+                style: 'Реализм',
+                works: Array.from({length: 38}, (_, i) => i + 1)
+                    .filter(num => num !== 27) // Исключаем work-27 (дубликат аватара)
+                    .map((id, index) => ({
+                        id: id,
+                        src: `gallery/renoit/renoit-work-${id}.jpg`,
+                        title: `Работа ${id}`,
+                        style: 'Реализм • Алексей Renoit'
+                    }))
+            },
+            rocket: {
+                name: 'Булат Rocket',
+                works: 9, // 10 - 1 (дубликат work-7)
+                worksPerPage: 9,
+                style: 'Графика',
+                works: Array.from({length: 10}, (_, i) => i + 1)
+                    .filter(num => num !== 7) // Исключаем work-7 (дубликат аватара)
+                    .map((id, index) => ({
+                        id: id,
+                        src: `gallery/rocket/rocket-work-${id}.jpg`,
+                        title: `Работа ${id}`,
+                        style: 'Графика • Булат Rocket'
+                    }))
+            },
+            lozhkin: {
+                name: 'Арсений Ложкин',
+                works: 14, // 14 работ + 1 аватар
+                worksPerPage: 9,
+                style: 'Японская татуировка',
+                works: Array.from({length: 14}, (_, i) => i + 1)
+                    .map((id, index) => ({
+                        id: id,
+                        src: `gallery/lozhkin/lozhkin-work-${id}.jpg`,
+                        title: `Работа ${id}`,
+                        style: 'Японская татуировка • Арсений Ложкин'
+                    }))
+            },
+            nastasia: {
+                name: 'Анастасия Красное Микеланджело',
+                works: 8, // 8 работ + 1 аватар
+                worksPerPage: 9,
+                style: 'Реализм, Чикано',
+                works: Array.from({length: 8}, (_, i) => i + 1)
+                    .map((id, index) => ({
+                        id: id,
+                        src: `gallery/nastasia/nastasia-work-${id}.jpg`,
+                        title: `Работа ${id}`,
+                        style: 'Реализм • Анастасия Красное Микеланджело'
+                    }))
+            },
+            dina: {
+                name: 'Дина Synthetica',
+                works: 10, // 10 работ + 1 аватар
+                worksPerPage: 9,
+                style: 'Акварельная, Ботаническая',
+                works: Array.from({length: 10}, (_, i) => i + 1)
+                    .map((id, index) => {
+                        // Определяем расширение файла
+                        const extensions = ['.PNG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG'];
+                        const ext = extensions[id - 1] || '.jpg';
+                        return {
+                            id: id,
+                            src: `gallery/dina/dina-work-${id}${ext}`,
+                            title: `Работа ${id}`,
+                            style: 'Акварель • Дина Synthetica'
+                        };
+                    })
+            },
+            barabanov: {
+                name: 'Михаил Барабанов',
+                works: 15, // 15 работ + 1 аватар (16 - 1 аватар)
+                worksPerPage: 9,
+                style: 'Neotraditional',
+                works: Array.from({length: 15}, (_, i) => i + 1)
+                    .map((id, index) => {
+                        // Определяем расширение файла для работ Михаила
+                        const extensions = ['.JPG', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG'];
+                        const ext = extensions[id - 1] || '.jpg';
+                        return {
+                            id: id,
+                            src: `gallery/barabanov/barabanov-work-${id}${ext}`,
+                            title: `Работа ${id}`,
+                            style: 'Neotraditional • Михаил Барабанов'
+                        };
+                    })
+            },
+            flo: {
+                name: 'Фларик Ахметов',
+                works: 15, // 15 работ + 1 аватар
+                worksPerPage: 9,
+                style: 'Орнаментал, Полинезия, Борнео',
+                works: Array.from({length: 15}, (_, i) => i + 1)
+                    .map((id, index) => {
+                        // Определяем расширение файла для работ Фларика
+                        const extensions = ['.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.JPG', '.jpg', '.jpg', '.jpg', '.JPG', '.JPG', '.JPG', '.JPG', '.JPG'];
+                        const ext = extensions[id - 1] || '.jpg';
+                        return {
+                            id: id,
+                            src: `gallery/flo/flo-work-${id}${ext}`,
+                            title: `Работа ${id}`,
+                            style: 'Орнаментал • Фларик Ахметов'
+                        };
+                    })
+            }
+        };
+
+        // Gallery pagination state
+        const galleryState = {
+            renoit: { currentPage: 1 },
+            rocket: { currentPage: 1 },
+            lozhkin: { currentPage: 1 },
+            nastasia: { currentPage: 1 },
+            dina: { currentPage: 1 },
+            barabanov: { currentPage: 1 },
+            flo: { currentPage: 1 }
+        };
+
+        // Master Gallery Functions
+        function openMasterGallery(masterName) {
+            const modal = document.getElementById(masterName + '-gallery');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                loadGalleryPage(masterName, 1);
+            }
+        }
+
+        function closeMasterGallery(masterName) {
+            const modal = document.getElementById(masterName + '-gallery');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function loadGalleryPage(masterName, page) {
+            const master = masterData[masterName];
+            const state = galleryState[masterName];
+            state.currentPage = page;
+            
+            const startIndex = (page - 1) * master.worksPerPage;
+            const endIndex = Math.min(startIndex + master.worksPerPage, master.works.length);
+            const worksToShow = master.works.slice(startIndex, endIndex);
+            
+            const grid = document.getElementById(masterName + '-gallery-grid');
+            grid.innerHTML = '';
+            
+            worksToShow.forEach((work, index) => {
+                const workElement = document.createElement('div');
+                workElement.className = 'group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer';
+                workElement.innerHTML = `
+                    <img src="${work.src}" alt="${work.title}" class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
+                        <div class="text-white">
+                            <h4 class="text-sm font-bold">${work.title}</h4>
+                            <p class="text-xs text-gray-300">${work.style}</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-xl"></i>
+                    </div>
+                `;
+                
+                // Add click handler for lightbox
+                workElement.addEventListener('click', function() {
+                    // Create gallery array for navigation
+                    const galleryImages = master.works.map(w => ({
+                        src: w.src,
+                        alt: w.title,
+                        title: w.title,
+                        description: w.style
+                    }));
+                    
+                    // Calculate the actual index in the full gallery
+                    const actualIndex = (page - 1) * master.worksPerPage + index;
+                    openLightboxWithGallery(galleryImages, actualIndex);
+                });
+                
+                grid.appendChild(workElement);
+            });
+            
+            // Update pagination info
+            const totalPages = Math.ceil(master.works.length / master.worksPerPage);
+            document.getElementById(masterName + '-current-page').textContent = page;
+            document.getElementById(masterName + '-total-pages').textContent = totalPages;
+            
+            // Update button states
+            const prevBtn = document.querySelector(`button[onclick="previousPage('${masterName}')"]`);
+            const nextBtn = document.querySelector(`button[onclick="nextPage('${masterName}')"]`);
+            
+            if (prevBtn) prevBtn.disabled = page === 1;
+            if (nextBtn) nextBtn.disabled = page === totalPages;
+        }
+
+        function nextPage(masterName) {
+            const master = masterData[masterName];
+            const state = galleryState[masterName];
+            const totalPages = Math.ceil(master.works.length / master.worksPerPage);
+            
+            if (state.currentPage < totalPages) {
+                loadGalleryPage(masterName, state.currentPage + 1);
+            }
+        }
+
+        function previousPage(masterName) {
+            const state = galleryState[masterName];
+            
+            if (state.currentPage > 1) {
+                loadGalleryPage(masterName, state.currentPage - 1);
+            }
+        }
+
+        // Close gallery when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('gallery-modal')) {
+                const masterName = e.target.id.replace('-gallery', '');
+                closeMasterGallery(masterName);
+            }
+        });
+
+        // Close gallery with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.gallery-modal').forEach(modal => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+                closeBookingModal();
+            }
+        });
+
+        // Booking Modal Functions
+        function openBookingModal(masterName) {
+            const modal = document.getElementById('booking-modal');
+            const masterNameInput = document.getElementById('master-name');
+            
+            if (modal && masterNameInput) {
+                masterNameInput.value = masterName;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                
+                // Test if fields are active
+                setTimeout(() => {
+                    const testField = document.getElementById('client-name');
+                    if (testField) {
+                        testField.focus();
+                        console.log('Test field focused, should be editable now');
+                    }
+                }, 100);
+            }
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // Reset form
+                document.getElementById('booking-form').reset();
+                document.getElementById('file-list').innerHTML = '';
+            }
+        }
+
+        // File handling functions
+        function handleFiles(files) {
+            const fileArray = Array.from(files);
+            const fileList = document.getElementById('file-list');
+            
+            if (fileArray.length > 10) {
+                alert('Максимум 10 файлов!');
+                return;
+            }
+            
+            fileList.innerHTML = '';
+            fileArray.forEach((file, index) => {
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(`Файл ${file.name} слишком большой! Максимум 10MB.`);
+                    return;
+                }
+                
+                const fileItem = document.createElement('div');
+                fileItem.className = 'flex items-center justify-between bg-gray-100 p-1 rounded text-xs';
+                fileItem.innerHTML = `
+                    <span class="text-gray-700 truncate flex-1 mr-2">${file.name}</span>
+                    <button type="button" onclick="removeFile(${index})" class="text-red-500 hover:text-red-700 flex-shrink-0">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        // Initialize form when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing form...');
+            
+            // File upload handling
+            const fileInput = document.getElementById('tattoo-images');
+            const dropZone = document.getElementById('file-drop-zone');
+            
+            if (fileInput) {
+                console.log('File input found, adding event listener');
+                fileInput.addEventListener('change', function(e) {
+                    console.log('File input changed');
+                    handleFiles(e.target.files);
+                });
+            } else {
+                console.log('File input not found!');
+            }
+            
+            // Drag and drop functionality
+            if (dropZone) {
+                console.log('Drop zone found, adding drag events');
+                dropZone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    dropZone.classList.add('border-purple-500', 'bg-purple-50');
+                });
+                
+                dropZone.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    dropZone.classList.remove('border-purple-500', 'bg-purple-50');
+                });
+                
+                dropZone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    dropZone.classList.remove('border-purple-500', 'bg-purple-50');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        // Update file input
+                        const dt = new DataTransfer();
+                        Array.from(files).forEach(file => dt.items.add(file));
+                        fileInput.files = dt.files;
+                        
+                        handleFiles(files);
+                    }
+                });
+            } else {
+                console.log('Drop zone not found!');
+            }
+
+            // Form submission
+            const bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                console.log('Booking form found, adding submit listener');
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted');
+                    
+                    // Get form data
+                    const masterName = document.getElementById('master-name').value;
+                    const clientName = document.getElementById('client-name').value;
+                    const clientPhone = document.getElementById('client-phone').value;
+                    const clientEmail = document.getElementById('client-email').value;
+                    const description = document.getElementById('tattoo-description').value;
+                    
+                    console.log('Form data:', { masterName, clientName, clientPhone, clientEmail, description });
+                    
+                    // Validate required fields
+                    if (!clientName.trim()) {
+                        alert('Пожалуйста, введите ваше имя');
+                        return;
+                    }
+                    if (!clientPhone.trim()) {
+                        alert('Пожалуйста, введите ваш телефон');
+                        return;
+                    }
+                    if (!description.trim()) {
+                        alert('Пожалуйста, опишите желаемую татуировку');
+                        return;
+                    }
+                    
+                    // Create message for messengers
+                    const message = `🎨 Новая заявка на запись к мастеру!
+
+👤 Мастер: ${masterName}
+📝 Имя клиента: ${clientName}
+📞 Телефон: ${clientPhone}
+📧 Email: ${clientEmail || 'Не указан'}
+🎯 Описание татуировки: ${description}
+📎 Файлов прикреплено: ${fileInput ? fileInput.files.length : 0}`;
+                    
+                    // Send to Telegram
+                    const telegramUrl = `https://t.me/chillinktattoos?text=${encodeURIComponent(message)}`;
+                    window.open(telegramUrl, '_blank');
+                    
+                    // Send to WhatsApp
+                    const whatsappUrl = `https://wa.me/79393830871?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                    
+                    // Send to email (using mailto)
+                    const emailSubject = `Новая заявка на запись к мастеру ${masterName}`;
+                    const emailBody = `Новая заявка на запись к мастеру:
+
+Мастер: ${masterName}
+Имя клиента: ${clientName}
+Телефон: ${clientPhone}
+Email: ${clientEmail || 'Не указан'}
+Описание татуировки: ${description}
+Количество прикрепленных файлов: ${fileInput ? fileInput.files.length : 0}`;
+                    
+                    const emailUrl = `mailto:chillink.kzn@gmail.com,kznbarmak@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                    window.open(emailUrl, '_blank');
+                    
+                    alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+                    closeBookingModal();
+                });
+            } else {
+                console.log('Booking form not found!');
+            }
+        });
+
+        function removeFile(index) {
+            const input = document.getElementById('tattoo-images');
+            const files = Array.from(input.files);
+            files.splice(index, 1);
+            
+            // Create new FileList
+            const dt = new DataTransfer();
+            files.forEach(file => dt.items.add(file));
+            input.files = dt.files;
+            
+            // Refresh display
+            input.dispatchEvent(new Event('change'));
+        }
+
+        // Telegram function
+        function openTelegram() {
+            const masterName = document.getElementById('master-name').value;
+            const message = `Здравствуйте! Хочу записаться к мастеру "${masterName}".`;
+            const telegramUrl = `https://t.me/chillinktattoos?text=${encodeURIComponent(message)}`;
+            window.open(telegramUrl, '_blank');
+        }
+
+        // WhatsApp function
+        function openWhatsApp() {
+            const masterName = document.getElementById('master-name').value;
+            const message = `Здравствуйте! Хочу записаться к мастеру "${masterName}".`;
+            const whatsappUrl = `https://wa.me/79393830871?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Test form fields function
+        function testFormFields() {
+            console.log('Testing form fields...');
+            
+            const fields = [
+                { id: 'client-name', name: 'Имя' },
+                { id: 'client-phone', name: 'Телефон' },
+                { id: 'client-email', name: 'Email' },
+                { id: 'tattoo-description', name: 'Описание' }
+            ];
+            
+            fields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (element) {
+                    console.log(`${field.name}:`, {
+                        exists: true,
+                        disabled: element.disabled,
+                        readonly: element.readOnly,
+                        value: element.value,
+                        type: element.type,
+                        style: element.style.cssText
+                    });
+                    
+                    // Try to set focus and value
+                    element.focus();
+                    element.value = `Тест ${field.name}`;
+                    
+                    // Check if value was set
+                    setTimeout(() => {
+                        console.log(`${field.name} value after test:`, element.value);
+                    }, 100);
+                } else {
+                    console.log(`${field.name}: element not found!`);
+                }
+            });
+            
+            alert('Тест завершен! Проверьте консоль браузера (F12) для подробностей.');
+        }
+
+        // Waiting List Modal Functions
+        function openWaitingListModal(masterName) {
+            const modal = document.getElementById('waiting-list-modal');
+            const masterNameInput = document.getElementById('waiting-master-name');
+            
+            if (modal && masterNameInput) {
+                masterNameInput.value = masterName;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                
+                // Test if fields are active
+                setTimeout(() => {
+                    const testField = document.getElementById('waiting-client-name');
+                    if (testField) {
+                        testField.focus();
+                        console.log('Waiting list test field focused, should be editable now');
+                    }
+                }, 100);
+            }
+        }
+
+        function closeWaitingListModal() {
+            const modal = document.getElementById('waiting-list-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // Reset form
+                document.getElementById('waiting-list-form').reset();
+                document.getElementById('waiting-file-list').innerHTML = '';
+            }
+        }
+
+        // Waiting List File handling functions
+        function handleWaitingListFiles(files) {
+            const fileArray = Array.from(files);
+            const fileList = document.getElementById('waiting-file-list');
+            
+            if (fileArray.length > 10) {
+                alert('Максимум 10 файлов!');
+                return;
+            }
+            
+            fileList.innerHTML = '';
+            fileArray.forEach((file, index) => {
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(`Файл ${file.name} слишком большой! Максимум 10MB.`);
+                    return;
+                }
+                
+                const fileItem = document.createElement('div');
+                fileItem.className = 'flex items-center justify-between bg-gray-100 p-1 rounded text-xs';
+                fileItem.innerHTML = `
+                    <span class="text-gray-700 truncate flex-1 mr-2">${file.name}</span>
+                    <button type="button" onclick="removeWaitingListFile(${index})" class="text-red-500 hover:text-red-700 flex-shrink-0">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        function removeWaitingListFile(index) {
+            const input = document.getElementById('waiting-tattoo-images');
+            const files = Array.from(input.files);
+            files.splice(index, 1);
+            
+            // Create new FileList
+            const dt = new DataTransfer();
+            files.forEach(file => dt.items.add(file));
+            input.files = dt.files;
+            
+            // Refresh display
+            input.dispatchEvent(new Event('change'));
+        }
+
+        // Initialize waiting list form when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Waiting list file upload handling
+            const waitingFileInput = document.getElementById('waiting-tattoo-images');
+            const waitingDropZone = document.getElementById('waiting-file-drop-zone');
+            
+            if (waitingFileInput) {
+                waitingFileInput.addEventListener('change', function(e) {
+                    handleWaitingListFiles(e.target.files);
+                });
+            }
+            
+            // Waiting list drag and drop functionality
+            if (waitingDropZone) {
+                waitingDropZone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    waitingDropZone.classList.add('border-indigo-500', 'bg-indigo-50');
+                });
+                
+                waitingDropZone.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    waitingDropZone.classList.remove('border-indigo-500', 'bg-indigo-50');
+                });
+                
+                waitingDropZone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    waitingDropZone.classList.remove('border-indigo-500', 'bg-indigo-50');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        // Update file input
+                        const dt = new DataTransfer();
+                        Array.from(files).forEach(file => dt.items.add(file));
+                        waitingFileInput.files = dt.files;
+                        
+                        handleWaitingListFiles(files);
+                    }
+                });
+            }
+
+            // Waiting list form submission
+            const waitingListForm = document.getElementById('waiting-list-form');
+            if (waitingListForm) {
+                waitingListForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const masterName = document.getElementById('waiting-master-name').value;
+                    const clientName = document.getElementById('waiting-client-name').value;
+                    const clientPhone = document.getElementById('waiting-client-phone').value;
+                    const clientEmail = document.getElementById('waiting-client-email').value;
+                    const description = document.getElementById('waiting-tattoo-description').value;
+                    
+                    // Validate required fields
+                    if (!clientName.trim()) {
+                        alert('Пожалуйста, введите ваше имя');
+                        return;
+                    }
+                    if (!clientPhone.trim()) {
+                        alert('Пожалуйста, введите ваш телефон');
+                        return;
+                    }
+                    if (!description.trim()) {
+                        alert('Пожалуйста, опишите желаемую татуировку');
+                        return;
+                    }
+                    
+                    // Create message for messengers
+                    const message = `📋 Новая заявка в лист ожидания!
+
+👤 Мастер: ${masterName}
+📝 Имя клиента: ${clientName}
+📞 Телефон: ${clientPhone}
+📧 Email: ${clientEmail || 'Не указан'}
+🎯 Описание татуировки: ${description}
+📎 Файлов прикреплено: ${waitingFileInput ? waitingFileInput.files.length : 0}
+⏰ Статус: Лист ожидания`;
+                    
+                    // Send to Telegram
+                    const telegramUrl = `https://t.me/chillinktattoos?text=${encodeURIComponent(message)}`;
+                    window.open(telegramUrl, '_blank');
+                    
+                    // Send to WhatsApp
+                    const whatsappUrl = `https://wa.me/79393830871?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                    
+                    // Send to email (using mailto)
+                    const emailSubject = `Новая заявка в лист ожидания к мастеру ${masterName}`;
+                    const emailBody = `Новая заявка в лист ожидания к мастеру:
+
+Мастер: ${masterName}
+Имя клиента: ${clientName}
+Телефон: ${clientPhone}
+Email: ${clientEmail || 'Не указан'}
+Описание татуировки: ${description}
+Количество прикрепленных файлов: ${waitingFileInput ? waitingFileInput.files.length : 0}
+Статус: Лист ожидания`;
+                    
+                    const emailUrl = `mailto:chillink.kzn@gmail.com,kznbarmak@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                    window.open(emailUrl, '_blank');
+                    
+                    alert('Заявка в лист ожидания отправлена! Мы уведомим вас, когда мастер будет доступен.');
+                    closeWaitingListModal();
+                });
+            }
+        });
+
+        // Waiting list Telegram function
+        function openWaitingListTelegram() {
+            const masterName = document.getElementById('waiting-master-name').value;
+            const message = `Здравствуйте! Хочу записаться в лист ожидания к мастеру "${masterName}".`;
+            const telegramUrl = `https://t.me/chillinktattoos?text=${encodeURIComponent(message)}`;
+            window.open(telegramUrl, '_blank');
+        }
+
+        // Waiting list WhatsApp function
+        function openWaitingListWhatsApp() {
+            const masterName = document.getElementById('waiting-master-name').value;
+            const message = `Здравствуйте! Хочу записаться в лист ожидания к мастеру "${masterName}".`;
+            const whatsappUrl = `https://wa.me/79393830871?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Lightbox functionality
+        let lightboxImages = [];
+        let currentLightboxIndex = 0;
+
+        function openLightbox(imageSrc, imageAlt, imageTitle, imageDescription) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-image');
+            const title = document.getElementById('lightbox-title');
+            const description = document.getElementById('lightbox-description');
+            
+            if (modal && img) {
+                img.src = imageSrc;
+                img.alt = imageAlt;
+                title.textContent = imageTitle || imageAlt;
+                description.textContent = imageDescription || '';
+                
+                // Hide navigation buttons for single images
+                const prevBtn = document.getElementById('lightbox-prev-btn');
+                const nextBtn = document.getElementById('lightbox-next-btn');
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+                
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function openLightboxWithGallery(images, startIndex = 0) {
+            lightboxImages = images;
+            currentLightboxIndex = startIndex;
+            
+            if (lightboxImages.length > 0) {
+                const currentImage = lightboxImages[currentLightboxIndex];
+                openLightbox(
+                    currentImage.src,
+                    currentImage.alt,
+                    currentImage.title,
+                    currentImage.description
+                );
+                
+                // Show/hide navigation buttons based on gallery size
+                const prevBtn = document.getElementById('lightbox-prev-btn');
+                const nextBtn = document.getElementById('lightbox-next-btn');
+                
+                if (lightboxImages.length > 1) {
+                    prevBtn.classList.remove('hidden');
+                    nextBtn.classList.remove('hidden');
+                } else {
+                    prevBtn.classList.add('hidden');
+                    nextBtn.classList.add('hidden');
+                }
+            }
+        }
+
+        function previousLightboxImage() {
+            if (lightboxImages.length > 1) {
+                currentLightboxIndex = (currentLightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+                const currentImage = lightboxImages[currentLightboxIndex];
+                
+                const img = document.getElementById('lightbox-image');
+                const title = document.getElementById('lightbox-title');
+                const description = document.getElementById('lightbox-description');
+                
+                img.src = currentImage.src;
+                img.alt = currentImage.alt;
+                title.textContent = currentImage.title || currentImage.alt;
+                description.textContent = currentImage.description || '';
+            }
+        }
+
+        function nextLightboxImage() {
+            if (lightboxImages.length > 1) {
+                currentLightboxIndex = (currentLightboxIndex + 1) % lightboxImages.length;
+                const currentImage = lightboxImages[currentLightboxIndex];
+                
+                const img = document.getElementById('lightbox-image');
+                const title = document.getElementById('lightbox-title');
+                const description = document.getElementById('lightbox-description');
+                
+                img.src = currentImage.src;
+                img.alt = currentImage.alt;
+                title.textContent = currentImage.title || currentImage.alt;
+                description.textContent = currentImage.description || '';
+            }
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            const lightboxModal = document.getElementById('lightbox-modal');
+            if (!lightboxModal.classList.contains('hidden')) {
+                switch(e.key) {
+                    case 'Escape':
+                        closeLightbox();
+                        break;
+                    case 'ArrowLeft':
+                        previousLightboxImage();
+                        break;
+                    case 'ArrowRight':
+                        nextLightboxImage();
+                        break;
+                }
+            }
+        });
+
+        // Close lightbox when clicking outside image
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'lightbox-modal') {
+                closeLightbox();
+            }
+        });
+
+        // Close booking modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'booking-modal') {
+                closeBookingModal();
+            }
+            if (e.target.id === 'waiting-list-modal') {
+                closeWaitingListModal();
+            }
+        });
+    </script>
+
     <!-- Master Gallery Modals -->
     <!-- Алексей Renoit Gallery -->
-    <div id="renoit-gallery" class="gallery-modal">
-        <div class="gallery-content">
-            <div class="gallery-header">
-                <h2>Алексей Renoit - Галерея работ</h2>
-                <span class="gallery-close">&times;</span>
+    <div id="renoit-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-purple-500 to-orange-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Алексей Renoit - Мастер татуировки</h2>
+                <button onclick="closeMasterGallery('renoit')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="renoit-work-1.jpg" alt="Работа Алексея Renoit 1" class="gallery-img">
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="gallery/renoit/master-photo.jpg" alt="Алексей Renoit" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Алексей Renoit</h3>
+                        <p class="text-purple-600 font-semibold text-lg mb-3">Мастер художественной татуировки</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">10+ лет опыта</span>
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">36+ работ</span>
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Реализм</span>
+                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            Профессиональный тату-мастер с более чем 10-летним опытом работы. Специализируется на реалистичных татуировках, 
+                            японской традиции и аниме стиле. Алексей создает уникальные произведения искусства, сочетая техническое мастерство 
+                            с творческим видением.
+                        </p>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="renoit-work-2.jpg" alt="Работа Алексея Renoit 2" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="renoit-work-3.jpg" alt="Работа Алексея Renoit 3" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="renoit-work-4.jpg" alt="Работа Алексея Renoit 4" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="renoit-work-5.jpg" alt="Работа Алексея Renoit 5" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="renoit-work-6.jpg" alt="Работа Алексея Renoit 6" class="gallery-img">
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="renoit-current-page" class="font-bold text-purple-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="renoit-total-pages" class="font-bold text-gray-600">4</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('renoit')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('renoit')" class="px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="renoit-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Булат Rocket Gallery -->
-    <div id="rocket-gallery" class="gallery-modal">
-        <div class="gallery-content">
-            <div class="gallery-header">
-                <h2>Булат Rocket - Галерея работ</h2>
-                <span class="gallery-close">&times;</span>
+    <div id="rocket-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-orange-500 to-purple-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Булат Rocket - Мастер татуировки</h2>
+                <button onclick="closeMasterGallery('rocket')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="rocket-work-1.jpg" alt="Работа Булата Rocket 1" class="gallery-img">
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="gallery/rocket/master-photo.jpg" alt="Булат Rocket" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Булат Rocket</h3>
+                        <p class="text-orange-600 font-semibold text-lg mb-3">Мастер графической татуировки</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">10+ лет опыта</span>
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">9+ работ</span>
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Графика</span>
+                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            Опытный мастер графической татуировки с уникальным стилем. Специализируется на черно-белых работах, 
+                            портретах и графических композициях. Булат создает смелые и выразительные татуировки, которые 
+                            подчеркивают индивидуальность клиента.
+                        </p>
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="rocket-work-2.jpg" alt="Работа Булата Rocket 2" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="rocket-work-3.jpg" alt="Работа Булата Rocket 3" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="rocket-work-4.jpg" alt="Работа Булата Rocket 4" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="rocket-work-5.jpg" alt="Работа Булата Rocket 5" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="rocket-work-6.jpg" alt="Работа Булата Rocket 6" class="gallery-img">
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="rocket-current-page" class="font-bold text-orange-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="rocket-total-pages" class="font-bold text-gray-600">1</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('rocket')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('rocket')" class="px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="rocket-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Арсений Ложкин Gallery -->
+    <div id="lozhkin-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-red-500 to-pink-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Арсений Ложкин - Мастер японской татуировки</h2>
+                <button onclick="closeMasterGallery('lozhkin')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="flex flex-col items-center text-center">
+                            <img src="gallery/lozhkin/master-photo.jpg" alt="Арсений Ложкин" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Арсений Ложкин</h3>
+                        <p class="text-red-600 font-semibold text-lg mb-3">Мастер японской татуировки</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">8+ лет опыта</span>
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">14+ работ</span>
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Иредзуми</span>
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            Специалист по традиционной японской татуировке с 8-летним опытом работы. 
+                            Мастер иредзуми, создающий аутентичные японские композиции с драконами, 
+                            сакурой, карпами и другими традиционными элементами. Арсений изучал 
+                            японскую культуру и технику татуировки у мастеров из Японии.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="lozhkin-current-page" class="font-bold text-red-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="lozhkin-total-pages" class="font-bold text-gray-600">2</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('lozhkin')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('lozhkin')" class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="lozhkin-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Анастасия Красное Микеланджело Gallery -->
+    <div id="nastasia-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-pink-500 to-red-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Анастасия "Красное Микеланджело" - Мастер реализма и чикано</h2>
+                <button onclick="closeMasterGallery('nastasia')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="gallery/nastasia/master-photo.jpg" alt="Анастасия Красное Микеланджело" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Анастасия "Красное Микеланджело"</h3>
+                        <p class="text-pink-600 font-semibold text-lg mb-3">Мастер реализма и чикано</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">10+ лет опыта</span>
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">8+ работ</span>
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">Реализм</span>
+                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            Профессиональный мастер реалистичной татуировки с 10-летним опытом работы. 
+                            Специализируется на реализме, чикано стиле и цветных портретах. Анастасия создает 
+                            невероятно детализированные работы, которые поражают своей реалистичностью и 
+                            художественным мастерством.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="nastasia-current-page" class="font-bold text-pink-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="nastasia-total-pages" class="font-bold text-gray-600">1</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('nastasia')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('nastasia')" class="px-3 py-1 bg-pink-500 hover:bg-pink-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="nastasia-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дина Synthetica Gallery -->
+    <div id="dina-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Дина Synthetica - Мастер акварельной и ботанической татуировки</h2>
+                <button onclick="closeMasterGallery('dina')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="text-center mb-4">
+                        <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="gallery/dina/master-photo.jpg" alt="Дина Synthetica" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800">Дина Synthetica</h3>
+                        <p class="text-teal-600 font-semibold text-sm">Акварельная, Ботаническая татуировка</p>
+                        <p class="text-gray-600 text-sm">8 лет опыта</p>
+                        <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-700 space-y-3">
+                        <p><strong>Специализация:</strong> Акварельная, ботаническая, цветная татуировка</p>
+                        <p><strong>Опыт работы:</strong> 8 лет</p>
+                        <p><strong>Стили:</strong> Акварель, ботаника, природа, цветные работы</p>
+                        
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">О мастере:</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                Дина - талантливый мастер акварельной татуировки с 8-летним опытом. 
+                                Специализируется на создании нежных, воздушных работ в стиле акварели, 
+                                особенно в ботанической тематике. Её работы отличаются мягкими переходами цветов, 
+                                реалистичной передачей природных форм и уникальным подходом к цветопередаче. 
+                                Дина создаёт татуировки, которые выглядят как настоящие акварельные картины на коже.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="dina-current-page" class="font-bold text-teal-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="dina-total-pages" class="font-bold text-gray-600">1</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('dina')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('dina')" class="px-3 py-1 bg-teal-500 hover:bg-teal-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="dina-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Михаил Барабанов Gallery -->
+    <div id="barabanov-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Михаил Барабанов - Гостевой мастер Neotraditional</h2>
+                <button onclick="closeMasterGallery('barabanov')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="text-center mb-4">
+                        <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="gallery/barabanov/master-photo.jpg" alt="Михаил Барабанов" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800">Михаил Барабанов</h3>
+                        <p class="text-indigo-600 font-semibold text-sm">Neotraditional татуировка</p>
+                        <p class="text-gray-600 text-sm">10+ лет опыта</p>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🌍 Гостевой мастер</span>
+                        <p class="text-gray-500 text-xs mt-1">г. Ижевск</p>
+                    </div>
+                    
+                    <div class="text-sm text-gray-700 space-y-3">
+                        <p><strong>Специализация:</strong> Neotraditional татуировка</p>
+                        <p><strong>Опыт работы:</strong> 10+ лет</p>
+                        <p><strong>Город:</strong> Ижевск</p>
+                        <p><strong>Статус:</strong> Гостевой мастер</p>
+                        
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">О мастере:</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                Михаил Барабанов - опытный мастер neotraditional стиля из Ижевска с более чем 10-летним стажем. 
+                                Специализируется на современной интерпретации традиционных татуировочных мотивов. 
+                                Его работы отличаются яркими цветами, четкими линиями и современным подходом к классическим сюжетам. 
+                                Михаил регулярно приезжает в нашу студию для проведения сессий.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="barabanov-current-page" class="font-bold text-indigo-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="barabanov-total-pages" class="font-bold text-gray-600">1</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('barabanov')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('barabanov')" class="px-3 py-1 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="barabanov-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Фларик Ахметов Gallery -->
+    <div id="flo-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Фларик Ахметов - Мастер орнаментальной, полинезийской и борнео татуировки</h2>
+                <button onclick="closeMasterGallery('flo')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="text-center mb-4">
+                        <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="gallery/flo/master-photo.jpg" alt="Фларик Ахметов" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800">Фларик Ахметов</h3>
+                        <p class="text-emerald-600 font-semibold text-sm">Орнаментальная, Полинезийская, Борнео татуировка</p>
+                        <p class="text-gray-600 text-sm">10+ лет опыта</p>
+                        <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-700 space-y-3">
+                        <p><strong>Специализация:</strong> Орнаментал, полинезия, борнео</p>
+                        <p><strong>Опыт работы:</strong> 10+ лет</p>
+                        <p><strong>Стили:</strong> Орнаментальная, полинезийская, борнео татуировка</p>
+                        
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">О мастере:</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                Фларик Ахметов - опытный мастер традиционных стилей татуировки с более чем 10-летним стажем. 
+                                Специализируется на орнаментальной, полинезийской и борнео татуировке. 
+                                Его работы отличаются глубоким пониманием культурных традиций, точностью исполнения 
+                                и уважением к историческим корням каждого стиля. Фларик создаёт татуировки, 
+                                которые несут в себе сакральный смысл и культурную ценность.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="flo-current-page" class="font-bold text-emerald-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="flo-total-pages" class="font-bold text-gray-600">1</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('flo')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('flo')" class="px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="flo-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-2">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[95vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-purple-500 to-orange-500 text-white p-4 flex justify-between items-center">
+                <h2 class="text-lg font-bold">Запись к мастеру</h2>
+                <button onclick="closeBookingModal()" class="text-white hover:text-gray-300 text-2xl font-bold">&times;</button>
+            </div>
+            
+            <div class="p-4 max-h-[85vh] overflow-y-auto">
+                <form id="booking-form" class="space-y-4">
+                    <!-- Master Name (Auto-filled) -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Мастер</label>
+                        <input type="text" id="master-name" readonly class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 font-semibold text-sm">
+                    </div>
+                    
+                    <!-- Client Name and Phone in one row -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Ваше имя *</label>
+                            <input type="text" id="client-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="name">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Телефон *</label>
+                            <input type="tel" id="client-phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="tel">
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="client-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="email">
+                    </div>
+                    
+                    <!-- Tattoo Description -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Описание желаемой татуировки *</label>
+                        <textarea id="tattoo-description" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors resize-none text-sm" placeholder="Опишите ваши пожелания, размер, место на теле, стиль..." style="pointer-events: auto; user-select: text;"></textarea>
+                    </div>
+                    
+                    <!-- File Upload -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Загрузить изображения (до 10 файлов)</label>
+                        <div id="file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-purple-500 transition-colors">
+                            <input type="file" id="tattoo-images" multiple accept="image/*" class="hidden">
+                            <label for="tattoo-images" class="cursor-pointer">
+                                <i class="fas fa-cloud-upload-alt text-2xl text-gray-400 mb-1"></i>
+                                <p class="text-gray-600 text-sm">Нажмите для выбора файлов или перетащите сюда</p>
+                                <p class="text-xs text-gray-500">PNG, JPG, JPEG до 10MB</p>
+                            </label>
+                        </div>
+                        <div id="file-list" class="mt-2 space-y-1 max-h-20 overflow-y-auto"></div>
+                    </div>
+                    
+                    <!-- Test Button -->
+                    <div class="bg-yellow-100 p-2 rounded-lg">
+                        <button type="button" onclick="testFormFields()" class="w-full bg-yellow-500 text-white px-3 py-2 rounded-lg hover:bg-yellow-600 transition-all duration-200 text-sm">
+                            🧪 Тест полей формы
+                        </button>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="space-y-2">
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-orange-500 text-white px-4 py-2 rounded-lg hover:from-purple-600 hover:to-orange-600 transition-all duration-200 text-sm font-medium">
+                            <i class="fas fa-paper-plane mr-1"></i>Отправить заявку
+                        </button>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" onclick="openTelegram()" class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 transition-all duration-200 text-sm">
+                                <i class="fab fa-telegram mr-1"></i>Telegram
+                            </button>
+                            <button type="button" onclick="openWhatsApp()" class="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 transition-all duration-200 text-sm">
+                                <i class="fab fa-whatsapp mr-1"></i>WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Waiting List Modal -->
+    <div id="waiting-list-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-2">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[95vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-4 flex justify-between items-center">
+                <h2 class="text-lg font-bold">Запись в лист ожидания</h2>
+                <button onclick="closeWaitingListModal()" class="text-white hover:text-gray-300 text-2xl font-bold">&times;</button>
+            </div>
+            
+            <div class="p-4 max-h-[85vh] overflow-y-auto">
+                <form id="waiting-list-form" class="space-y-4">
+                    <!-- Master Name (Auto-filled) -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Мастер</label>
+                        <input type="text" id="waiting-master-name" readonly class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 font-semibold text-sm">
+                    </div>
+                    
+                    <!-- Client Name and Phone in one row -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Ваше имя *</label>
+                            <input type="text" id="waiting-client-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="name">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Телефон *</label>
+                            <input type="tel" id="waiting-client-phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="tel">
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="waiting-client-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="email">
+                    </div>
+                    
+                    <!-- Tattoo Description -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Описание желаемой татуировки *</label>
+                        <textarea id="waiting-tattoo-description" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors resize-none text-sm" placeholder="Опишите ваши пожелания, размер, место на теле, стиль..." style="pointer-events: auto; user-select: text;"></textarea>
+                    </div>
+                    
+                    <!-- File Upload -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Загрузить изображения (до 10 файлов)</label>
+                        <div id="waiting-file-drop-zone" class="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-indigo-500 transition-colors">
+                            <input type="file" id="waiting-tattoo-images" multiple accept="image/*" class="hidden">
+                            <label for="waiting-tattoo-images" class="cursor-pointer">
+                                <i class="fas fa-cloud-upload-alt text-2xl text-gray-400 mb-1"></i>
+                                <p class="text-gray-600 text-sm">Нажмите для выбора файлов или перетащите сюда</p>
+                                <p class="text-xs text-gray-500">PNG, JPG, JPEG до 10MB</p>
+                            </label>
+                        </div>
+                        <div id="waiting-file-list" class="mt-2 space-y-1 max-h-20 overflow-y-auto"></div>
+                    </div>
+                    
+                    <!-- Info about waiting list -->
+                    <div class="bg-blue-50 p-3 rounded-lg">
+                        <p class="text-blue-800 text-xs">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            <strong>Лист ожидания:</strong> Мы уведомим вас, когда мастер будет доступен для записи. 
+                            Обычно это происходит за 1-2 недели до его приезда.
+                        </p>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="space-y-2">
+                        <button type="submit" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 text-sm font-medium">
+                            <i class="fas fa-list mr-1"></i>Записаться в лист ожидания
+                        </button>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" onclick="openWaitingListTelegram()" class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 transition-all duration-200 text-sm">
+                                <i class="fab fa-telegram mr-1"></i>Telegram
+                            </button>
+                            <button type="button" onclick="openWaitingListWhatsApp()" class="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 transition-all duration-200 text-sm">
+                                <i class="fab fa-whatsapp mr-1"></i>WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="relative max-w-7xl max-h-[95vh] w-full h-full flex items-center justify-center">
+            <!-- Close button -->
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 text-white hover:text-gray-300 text-4xl font-bold bg-black/50 rounded-full w-12 h-12 flex items-center justify-center">
+                &times;
+            </button>
+            
+            <!-- Previous button -->
+            <button id="lightbox-prev-btn" onclick="previousLightboxImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-gray-300 text-3xl font-bold bg-black/50 rounded-full w-12 h-12 flex items-center justify-center hidden">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <!-- Next button -->
+            <button id="lightbox-next-btn" onclick="nextLightboxImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-gray-300 text-3xl font-bold bg-black/50 rounded-full w-12 h-12 flex items-center justify-center hidden">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Image container -->
+            <div class="relative w-full h-full flex items-center justify-center">
+                <img id="lightbox-image" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+            </div>
+            
+            <!-- Image info -->
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-lg text-center">
+                <div id="lightbox-title" class="text-lg font-semibold"></div>
+                <div id="lightbox-description" class="text-sm text-gray-300"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
-
