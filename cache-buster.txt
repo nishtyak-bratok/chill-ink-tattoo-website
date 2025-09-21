@@ -1,0 +1,6 @@
+# Cache Buster File
+# This file forces GitHub Pages to refresh
+# Updated: 2025-09-21 23:45:00
+# Commit: 18c278f
+
+This file exists to force GitHub Pages to refresh the cache and show the latest version of the website.
