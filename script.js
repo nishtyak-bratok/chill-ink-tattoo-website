@@ -379,6 +379,16 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+// Alias function for backward compatibility
+function openMasterGallery(masterName) {
+    openGallery(masterName);
+}
+
+// Close master gallery function
+function closeMasterGallery(masterName) {
+    closeGallery(masterName);
+}
+
 // Gallery image click handler for lightbox effect
 document.querySelectorAll('.gallery-img').forEach(img => {
     img.addEventListener('click', function() {
@@ -426,3 +436,58 @@ document.querySelectorAll('.gallery-img').forEach(img => {
         document.addEventListener('keydown', closeLightbox);
     });
 });
+
+// FAQ Toggle Functionality
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    console.log('FAQ items found:', faqItems.length);
+    
+    faqItems.forEach((item, index) => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+        
+        if (question && answer && icon) {
+            console.log(`FAQ item ${index + 1} initialized`);
+            
+            question.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log(`FAQ item ${index + 1} clicked`);
+                
+                const isOpen = !answer.classList.contains('hidden');
+                
+                // Close all other FAQ items
+                faqItems.forEach((otherItem, otherIndex) => {
+                    if (otherItem !== item) {
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        const otherIcon = otherItem.querySelector('.faq-icon');
+                        if (otherAnswer && otherIcon) {
+                            otherAnswer.classList.add('hidden');
+                            otherIcon.style.transform = 'rotate(0deg)';
+                        }
+                    }
+                });
+                
+                // Toggle current item
+                if (isOpen) {
+                    answer.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                    console.log(`FAQ item ${index + 1} closed`);
+                } else {
+                    answer.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                    console.log(`FAQ item ${index + 1} opened`);
+                }
+            });
+        } else {
+            console.error(`FAQ item ${index + 1} missing elements:`, { question, answer, icon });
+        }
+    });
+}
+
+// Initialize FAQ when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFAQ);
+} else {
+    initFAQ();
+}

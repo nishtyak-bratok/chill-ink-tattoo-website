@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <script>
         tailwind.config = {
             theme: {
@@ -45,6 +46,33 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        /* Optimize image loading and transitions */
+        .work-preview img {
+            transition: opacity 0.2s ease-in-out;
+            will-change: transform;
+            backface-visibility: hidden;
+            /* Optimize for fast loading */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            /* Force hardware acceleration */
+            transform: translateZ(0);
+        }
+        
+        /* Loading state for smooth transitions */
+        .work-preview img.opacity-50 {
+            opacity: 0.5;
+            transition: opacity 0.2s ease-in-out;
+        }
+        
+        /* Optimize thumbnail loading */
+        .grid.grid-cols-2.gap-2 img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            /* Prevent layout shift during loading */
+            min-height: 120px;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-black text-white">
@@ -65,6 +93,7 @@
                     <button onclick="scrollToSection('services')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Услуги</button>
                     <button onclick="scrollToSection('portfolio')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Портфолио</button>
                     <button onclick="scrollToSection('artists')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Мастера</button>
+                    <button onclick="scrollToSection('faq')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">FAQ</button>
                     <button onclick="scrollToSection('contact')" class="text-gray-300 hover:text-purple-500 transition-colors duration-200">Контакты</button>
                     <button onclick="scrollToSection('contact')" class="bg-gradient-to-r from-purple-600 to-orange-600 text-white px-6 py-2 rounded-full hover:from-purple-700 hover:to-orange-700 transition-all duration-200 transform hover:scale-105">
                         Записаться
@@ -85,6 +114,7 @@
                     <button onclick="scrollToSection('services')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Услуги</button>
                     <button onclick="scrollToSection('portfolio')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Портфолио</button>
                     <button onclick="scrollToSection('artists')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Мастера</button>
+                    <button onclick="scrollToSection('faq')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">FAQ</button>
                     <button onclick="scrollToSection('contact')" class="block w-full text-left text-gray-300 hover:text-purple-500 transition-colors duration-200 py-2">Контакты</button>
                     <button onclick="scrollToSection('contact')" class="w-full bg-gradient-to-r from-purple-600 to-orange-600 text-white px-6 py-3 rounded-full hover:from-purple-700 hover:to-orange-700 transition-all duration-200 mt-4">
                         Записаться
@@ -117,7 +147,7 @@
                 <div class="flex flex-wrap justify-center gap-8 mb-12">
                     <div class="flex items-center space-x-2 text-gray-300">
                         <i class="fas fa-star text-yellow-500 text-xl"></i>
-                        <span class="text-lg">5+ лет опыта</span>
+                        <span class="text-lg">7+ лет опыта</span>
                     </div>
                     <div class="flex items-center space-x-2 text-gray-300">
                         <i class="fas fa-award text-purple-500 text-xl"></i>
@@ -323,222 +353,421 @@
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Наши мастера</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">20+ профессиональных тату-мастеров с многолетним опытом</p>
+                
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-purple-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('renoit')">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-purple-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('renoit')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-orange-500"></div>
                     <div class="text-center">
-                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/renoit/master-photo.jpg', 'Алексей Renoit', 'Алексей Renoit', 'Мастер графической татуировки с 10+ летним опытом')">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/renoit/master-photo.jpg', 'Алексей Renoit', 'Алексей Renoit', 'Мастер графической татуировки с 10+ летним опытом')">
                             <img src="gallery/renoit/master-photo.jpg" alt="Алексей Renoit" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-purple-500/80 to-orange-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="text-white text-center">
-                                    <div class="text-lg font-bold">10+ лет</div>
-                                    <div class="text-sm">Графика</div>
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Графика</div>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                                <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Алексей Renoit</h3>
-                        <p class="text-purple-600 font-semibold mb-2">Специализация: Графика</p>
-                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
-                        <p class="text-purple-600 font-bold mb-4">🏛️ Резидент студии</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Реализм</span>
-                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Японская традиция</span>
-                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Аниме</span>
-                            <span class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm">Дотворк</span>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Алексей</h3>
+                        <div class="text-center mb-2">
+                            <p class="text-purple-600 font-medium text-sm mb-0.5">Специализация: Графика</p>
+                            <p class="text-gray-600 text-sm mb-0.5">Опыт работы: 10+ лет</p>
+                            <p class="text-purple-600 font-medium text-sm">🏛️ Резидент студии</p>
                         </div>
-                        <button onclick="openBookingModal('Алексей Renoit')" class="w-full bg-gradient-to-r from-purple-500 to-orange-500 text-white px-4 py-2 rounded-lg hover:from-purple-600 hover:to-orange-600 transition-all duration-200 transform hover:scale-105">
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('renoit'); setTimeout(() => highlightWorkInGallery('renoit', 1), 500);">
+                                    <img src="gallery/renoit/renoit-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('renoit'); setTimeout(() => highlightWorkInGallery('renoit', 2), 500);">
+                                    <img src="gallery/renoit/renoit-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('renoit'); setTimeout(() => highlightWorkInGallery('renoit', 3), 500);">
+                                    <img src="gallery/renoit/renoit-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('renoit')" class="aspect-square bg-gradient-to-br from-purple-500 to-orange-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-purple-600 hover:to-orange-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button onclick="openBookingModal('Алексей')" class="bg-gradient-to-r from-purple-500 to-orange-500 text-white px-4 py-2 rounded-lg hover:from-purple-600 hover:to-orange-600 transition-all duration-200 transform hover:scale-105 text-sm" style="width: calc(100px + 6px); margin: 0 auto; display: block;">
                             Записаться
                         </button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-orange-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('rocket')">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-orange-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('rocket')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-purple-500"></div>
                     <div class="text-center">
-                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/rocket/master-photo.jpg', 'Булат Rocket', 'Булат Rocket', 'Мастер графической татуировки с 10+ летним опытом')">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/rocket/master-photo.jpg', 'Булат Rocket', 'Булат Rocket', 'Мастер графической татуировки с 10+ летним опытом')">
                             <img src="gallery/rocket/master-photo.jpg" alt="Булат Rocket" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-orange-500/80 to-purple-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="text-white text-center">
-                                    <div class="text-lg font-bold">10+ лет</div>
-                                    <div class="text-sm">Графика</div>
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Графика</div>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                                <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Булат Rocket</h3>
-                        <p class="text-orange-600 font-semibold mb-2">Специализация: Графика</p>
-                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
-                        <p class="text-orange-600 font-bold mb-4">🏛️ Резидент студии</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Реализм</span>
-                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Графика</span>
-                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Портреты</span>
-                            <span class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Черно-белое</span>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Булат</h3>
+                        <div class="text-center mb-2">
+                            <p class="text-orange-600 font-medium text-sm mb-0.5">Специализация: Графика</p>
+                            <p class="text-gray-600 text-sm mb-0.5">Опыт работы: 10+ лет</p>
+                            <p class="text-orange-600 font-medium text-sm">🏛️ Резидент студии</p>
                         </div>
-                        <button onclick="openBookingModal('Булат Rocket')" class="w-full bg-gradient-to-r from-orange-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-orange-600 hover:to-purple-600 transition-all duration-200 transform hover:scale-105">
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('rocket'); setTimeout(() => highlightWorkInGallery('rocket', 1), 500);">
+                                    <img src="gallery/rocket/rocket-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('rocket'); setTimeout(() => highlightWorkInGallery('rocket', 2), 500);">
+                                    <img src="gallery/rocket/rocket-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('rocket'); setTimeout(() => highlightWorkInGallery('rocket', 3), 500);">
+                                    <img src="gallery/rocket/rocket-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('rocket')" class="aspect-square bg-gradient-to-br from-orange-500 to-purple-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-orange-600 hover:to-purple-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Булат')" class="bg-gradient-to-r from-orange-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-orange-600 hover:to-purple-600 transition-all duration-200 transform hover:scale-105 text-sm" style="width: calc(100px + 6px); margin: 0 auto; display: block;">
                             Записаться
                         </button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-red-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('lozhkin')">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-red-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('lozhkin')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 to-pink-500"></div>
                     <div class="text-center">
-                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/lozhkin/master-photo.jpg', 'Арсений Ложкин', 'Арсений Ложкин', 'Мастер японской татуировки с 8+ летним опытом')">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/lozhkin/master-photo.jpg', 'Арсений', 'Арсений', 'Мастер японской татуировки с 8+ летним опытом')">
                             <img src="gallery/lozhkin/master-photo.jpg" alt="Арсений Ложкин" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-red-500/80 to-pink-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="text-white text-center">
-                                    <div class="text-lg font-bold">8+ лет</div>
-                                    <div class="text-sm">Японская татуировка</div>
+                                    <div class="text-xs font-bold">8+ лет</div>
+                                    <div class="text-xs">Японская</div>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                                <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Арсений Ложкин</h3>
-                        <p class="text-red-600 font-semibold mb-2">Специализация: Японская татуировка</p>
-                        <p class="text-gray-600 mb-2">Опыт работы: 8+ лет</p>
-                        <p class="text-red-600 font-bold mb-4">🏛️ Резидент студии</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Японская традиция</span>
-                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Иредзуми</span>
-                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Драконы</span>
-                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm">Сакура</span>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Арсений</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-red-600 font-medium text-sm mb-1">Специализация: Японская татуировка</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 8+ лет</p>
+                            <p class="text-red-600 font-medium text-sm">🏛️ Резидент студии</p>
                         </div>
-                        <button onclick="openBookingModal('Арсений Ложкин')" class="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105">
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('lozhkin'); setTimeout(() => highlightWorkInGallery('lozhkin', 1), 500);">
+                                    <img src="gallery/lozhkin/lozhkin-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('lozhkin'); setTimeout(() => highlightWorkInGallery('lozhkin', 2), 500);">
+                                    <img src="gallery/lozhkin/lozhkin-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('lozhkin'); setTimeout(() => highlightWorkInGallery('lozhkin', 3), 500);">
+                                    <img src="gallery/lozhkin/lozhkin-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('lozhkin')" class="aspect-square bg-gradient-to-br from-red-500 to-pink-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-red-600 hover:to-pink-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Арсений')" class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105 text-sm" style="width: calc(100px + 6px); margin: 0 auto; display: block;">
                             Записаться
                         </button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-pink-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('nastasia')">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-pink-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('nastasia')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 to-red-500"></div>
                     <div class="text-center">
-                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/nastasia/master-photo.jpg', 'Анастасия Красное Микеланджело', 'Анастасия \"Красное Микеланджело\"', 'Мастер реализма и чикано с 10+ летним опытом')">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/nastasia/master-photo.jpg', 'Анастасия', 'Анастасия', 'Мастер реализма и чикано с 10+ летним опытом')">
                             <img src="gallery/nastasia/master-photo.jpg" alt="Анастасия Красное Микеланджело" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-pink-500/80 to-red-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="text-white text-center">
-                                    <div class="text-lg font-bold">10+ лет</div>
-                                    <div class="text-sm">Реализм</div>
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Реализм</div>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                                <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Анастасия "Красное Микеланджело"</h3>
-                        <p class="text-pink-600 font-semibold mb-2">Специализация: Реализм, Чикано</p>
-                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
-                        <p class="text-pink-600 font-bold mb-4">🏛️ Резидент студии</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Реализм</span>
-                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Чикано</span>
-                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Портреты</span>
-                            <span class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm">Цветные</span>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Анастасия</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-pink-600 font-medium text-sm mb-1">Специализация: Реализм, Чикано</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 10+ лет</p>
+                            <p class="text-pink-600 font-medium text-sm">🏛️ Резидент студии</p>
                         </div>
-                        <button onclick="openBookingModal('Анастасия \"Красное Микеланджело\"')" class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all duration-200 transform hover:scale-105">
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('nastasia'); setTimeout(() => highlightWorkInGallery('nastasia', 1), 500);">
+                                    <img src="gallery/nastasia/nastasia-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('nastasia'); setTimeout(() => highlightWorkInGallery('nastasia', 2), 500);">
+                                    <img src="gallery/nastasia/nastasia-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('nastasia'); setTimeout(() => highlightWorkInGallery('nastasia', 3), 500);">
+                                    <img src="gallery/nastasia/nastasia-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('nastasia')" class="aspect-square bg-gradient-to-br from-pink-500 to-red-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-pink-600 hover:to-red-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Анастасия')" class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all duration-200 transform hover:scale-105 text-sm" style="width: calc(100px + 6px); margin: 0 auto; display: block;">
                             Записаться
                         </button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-teal-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('dina')">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-teal-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('dina')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500"></div>
                     <div class="text-center">
-                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/dina/master-photo.jpg', 'Дина Synthetica', 'Дина Synthetica', 'Мастер акварельной и ботанической татуировки с 8-летним опытом')">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/dina/master-photo.jpg', 'Дина Synthetica', 'Дина Synthetica', 'Мастер акварельной и ботанической татуировки с 8-летним опытом')">
                             <img src="gallery/dina/master-photo.jpg" alt="Дина Synthetica" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-teal-500/80 to-cyan-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="text-white text-center">
-                                    <div class="text-lg font-bold">8 лет</div>
-                                    <div class="text-sm">Акварель</div>
+                                    <div class="text-xs font-bold">8 лет</div>
+                                    <div class="text-xs">Акварель</div>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                                <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Дина Synthetica</h3>
-                        <p class="text-teal-600 font-semibold mb-2">Специализация: Акварельная, Ботаническая</p>
-                        <p class="text-gray-600 mb-2">Опыт работы: 8 лет</p>
-                        <p class="text-teal-600 font-bold mb-4">🏛️ Резидент студии</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Акварель</span>
-                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Ботаника</span>
-                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Цветные</span>
-                            <span class="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-1 rounded-full text-sm">Природа</span>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Дина</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-teal-600 font-medium text-sm mb-1">Специализация: Акварельная, Ботаническая</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 8 лет</p>
+                            <p class="text-teal-600 font-medium text-sm">🏛️ Резидент студии</p>
                         </div>
-                        <button onclick="openBookingModal('Дина Synthetica')" class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-4 py-2 rounded-lg hover:from-teal-600 hover:to-cyan-600 transition-all duration-200 transform hover:scale-105">
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 1), 500);">
+                                    <img src="gallery/dina/dina-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 2), 500);">
+                                    <img src="gallery/dina/dina-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 3), 500);">
+                                    <img src="gallery/dina/dina-work-3.JPEG" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('dina')" class="aspect-square bg-gradient-to-br from-teal-500 to-cyan-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-teal-600 hover:to-cyan-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Дина')" class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-4 py-2 rounded-lg hover:from-teal-600 hover:to-cyan-600 transition-all duration-200 transform hover:scale-105 text-sm">
                             Записаться
                         </button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-indigo-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('barabanov')">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-indigo-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('barabanov')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
                     <div class="text-center">
-                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/barabanov/master-photo.jpg', 'Михаил Барабанов', 'Михаил Барабанов', 'Гостевой мастер neotraditional стиля из Ижевска с 10+ летним опытом')">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/barabanov/master-photo.jpg', 'Михаил Барабанов', 'Михаил Барабанов', 'Гостевой мастер neotraditional стиля из Ижевска с 10+ летним опытом')">
                             <img src="gallery/barabanov/master-photo.jpg" alt="Михаил Барабанов" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-indigo-500/80 to-purple-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="text-white text-center">
-                                    <div class="text-lg font-bold">10+ лет</div>
-                                    <div class="text-sm">Neotraditional</div>
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Neotraditional</div>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                                <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Михаил Барабанов</h3>
-                        <p class="text-indigo-600 font-semibold mb-2">Специализация: Neotraditional</p>
-                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
-                        <p class="text-indigo-600 font-bold mb-2">🌍 Гостевой мастер</p>
-                        <p class="text-gray-500 text-sm mb-4">г. Ижевск</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Neotraditional</span>
-                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Цветные</span>
-                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Современные</span>
-                            <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-sm">Ижевск</span>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Михаил Б.</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-indigo-600 font-medium text-sm mb-1">Специализация: Neotraditional</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 10+ лет</p>
+                            <p class="text-indigo-600 font-medium text-sm">🌍 Гостевой мастер</p>
+                            <p class="text-gray-500 text-xs">г. Ижевск</p>
                         </div>
-                        <button onclick="openWaitingListModal('Михаил Барабанов')" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 transform hover:scale-105">
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('barabanov'); setTimeout(() => highlightWorkInGallery('barabanov', 1), 500);">
+                                    <img src="gallery/barabanov/barabanov-work-1.JPG" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('barabanov'); setTimeout(() => highlightWorkInGallery('barabanov', 2), 500);">
+                                    <img src="gallery/barabanov/barabanov-work-2.JPG" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('barabanov'); setTimeout(() => highlightWorkInGallery('barabanov', 3), 500);">
+                                    <img src="gallery/barabanov/barabanov-work-3.JPG" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('barabanov')" class="aspect-square bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-indigo-600 hover:to-purple-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openWaitingListModal('Михаил Б.')" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 transform hover:scale-105 text-sm">
                             Записаться в лист ожидания
                         </button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-emerald-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('flo')">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-emerald-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('flo')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
                     <div class="text-center">
-                        <div class="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/flo/master-photo.jpg', 'Фларик Ахметов', 'Фларик Ахметов', 'Мастер орнаментальной, полинезийской и борнео татуировки с 10+ летним опытом')">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/flo/master-photo.jpg', 'Фларик Ахметов', 'Фларик Ахметов', 'Мастер орнаментальной, полинезийской и борнео татуировки с 10+ летним опытом')">
                             <img src="gallery/flo/master-photo.jpg" alt="Фларик Ахметов" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-emerald-500/80 to-teal-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                 <div class="text-white text-center">
-                                    <div class="text-lg font-bold">10+ лет</div>
-                                    <div class="text-sm">Орнаментал</div>
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Орнаментал</div>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-2xl"></i>
+                                <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Фларик Ахметов</h3>
-                        <p class="text-emerald-600 font-semibold mb-2">Специализация: Орнаментал, Полинезия, Борнео</p>
-                        <p class="text-gray-600 mb-2">Опыт работы: 10+ лет</p>
-                        <p class="text-emerald-600 font-bold mb-4">🏛️ Резидент студии</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Орнаментал</span>
-                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Полинезия</span>
-                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Борнео</span>
-                            <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-sm">Традиции</span>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Фларик</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-emerald-600 font-medium text-sm mb-1">Специализация: Орнаментал, Полинезия, Борнео</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 10+ лет</p>
+                            <p class="text-emerald-600 font-medium text-sm">🏛️ Резидент студии</p>
                         </div>
-                        <button onclick="openBookingModal('Фларик Ахметов')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-200 transform hover:scale-105">
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('flo'); setTimeout(() => highlightWorkInGallery('flo', 1), 500);">
+                                    <img src="gallery/flo/flo-work-1.JPG" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('flo'); setTimeout(() => highlightWorkInGallery('flo', 2), 500);">
+                                    <img src="gallery/flo/flo-work-2.JPG" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('flo'); setTimeout(() => highlightWorkInGallery('flo', 3), 500);">
+                                    <img src="gallery/flo/flo-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('flo')" class="aspect-square bg-gradient-to-br from-emerald-500 to-teal-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-emerald-600 hover:to-teal-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Фларик')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-gray-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('atlasov')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-500 to-slate-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/atlasov/master-photo.jpg', 'Михаил Атласов', 'Михаил Атласов', 'Мастер минималистичной татуировки с 10+ летним опытом')">
+                            <img src="gallery/atlasov/master-photo.jpg" alt="Михаил Атласов" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-500/80 to-slate-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Минимализм</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Михаил А.</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-gray-600 font-medium text-sm mb-1">Специализация: Минималистичная татуировка</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 10+ лет</p>
+                            <p class="text-gray-600 font-medium text-sm">🏛️ Резидент студии</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('atlasov'); setTimeout(() => highlightWorkInGallery('atlasov', 1), 500);">
+                                    <img src="gallery/atlasov/atlasov-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('atlasov'); setTimeout(() => highlightWorkInGallery('atlasov', 2), 500);">
+                                    <img src="gallery/atlasov/atlasov-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('atlasov'); setTimeout(() => highlightWorkInGallery('atlasov', 3), 500);">
+                                    <img src="gallery/atlasov/atlasov-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('atlasov')" class="aspect-square bg-gradient-to-br from-gray-500 to-slate-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-gray-600 hover:to-slate-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Михаил А.')" class="w-full bg-gradient-to-r from-gray-500 to-slate-500 text-white px-4 py-2 rounded-lg hover:from-gray-600 hover:to-slate-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-indigo-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('leyla')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/leyla/master-photo.jpg', 'Лейла', 'Лейла', 'Мастер орнаментальной татуировки с 5-летним опытом')">
+                            <img src="gallery/leyla/master-photo.jpg" alt="Лейла" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-indigo-500/80 to-purple-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">5 лет</div>
+                                    <div class="text-xs">Орнаментал</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Лейла</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-indigo-600 font-medium text-sm mb-1">Специализация: Орнаментальная татуировка</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 5 лет</p>
+                            <p class="text-indigo-600 font-medium text-sm">🏛️ Резидент студии</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('leyla'); setTimeout(() => highlightWorkInGallery('leyla', 1), 500);">
+                                    <img src="gallery/leyla/leyla-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('leyla'); setTimeout(() => highlightWorkInGallery('leyla', 2), 500);">
+                                    <img src="gallery/leyla/leyla-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('leyla'); setTimeout(() => highlightWorkInGallery('leyla', 3), 500);">
+                                    <img src="gallery/leyla/leyla-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('leyla')" class="aspect-square bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-indigo-600 hover:to-purple-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Лейла')" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-200 transform hover:scale-105 text-sm">
                             Записаться
                         </button>
                     </div>
@@ -618,6 +847,148 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white pt-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Часто задаваемые вопросы</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Ответы на самые популярные вопросы о татуировках</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+                    <button class="faq-question w-full text-left flex justify-between items-center group">
+                        <h3 class="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">Больно ли делать татуировку?</h3>
+                        <i class="fas fa-chevron-down text-purple-400 transform transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer mt-6 hidden">
+                        <div class="grid md:grid-cols-2 gap-6 items-center">
+                            <div>
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Процедура нанесения татуировки связана с повреждением кожного покрова и нервных окончаний, что может вызывать дискомфорт. Однако уровень боли индивидуален и зависит от болевого порога каждого человека. Некоторые области тела более чувствительны, чем другие.
+                                </p>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Наши мастера используют современные обезболивающие средства и техники, чтобы минимизировать неприятные ощущения во время сеанса.
+                                </p>
+                            </div>
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&h=400&fit=crop&crop=center" 
+                                     alt="Татуировка на плече" 
+                                     class="w-full h-64 object-cover rounded-xl shadow-2xl">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+                    <button class="faq-question w-full text-left flex justify-between items-center group">
+                        <h3 class="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">Как ухаживать за татуировкой после нанесения?</h3>
+                        <i class="fas fa-chevron-down text-purple-400 transform transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer mt-6 hidden">
+                        <div class="grid md:grid-cols-2 gap-6 items-center">
+                            <div>
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    После сеанса важно соблюдать рекомендации мастера: держать татуировку чистой, избегать прямого солнечного света и не мочить её в течение первых дней. Используйте специальные заживляющие мази и избегайте физических нагрузок.
+                                </p>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Мы предоставляем подробную инструкцию по уходу и рекомендуем качественные средства для заживления.
+                                </p>
+                            </div>
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?w=500&h=400&fit=crop&crop=center" 
+                                     alt="Уход за татуировкой" 
+                                     class="w-full h-64 object-cover rounded-xl shadow-2xl">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+                    <button class="faq-question w-full text-left flex justify-between items-center group">
+                        <h3 class="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">Сколько времени занимает заживление татуировки?</h3>
+                        <i class="fas fa-chevron-down text-purple-400 transform transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer mt-6 hidden">
+                        <div class="grid md:grid-cols-2 gap-6 items-center">
+                            <div>
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Полное заживление обычно занимает от 2 до 4 недель, в зависимости от индивидуальных особенностей организма и размера татуировки. В этот период важно следовать рекомендациям по уходу, чтобы избежать осложнений.
+                                </p>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Первые несколько дней татуировка может быть чувствительной и слегка опухшей - это нормальная реакция организма.
+                                </p>
+                            </div>
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=400&fit=crop&crop=center" 
+                                     alt="Заживающая татуировка" 
+                                     class="w-full h-64 object-cover rounded-xl shadow-2xl">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+                    <button class="faq-question w-full text-left flex justify-between items-center group">
+                        <h3 class="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">Можно ли удалить татуировку, если она разонравилась?</h3>
+                        <i class="fas fa-chevron-down text-purple-400 transform transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer mt-6 hidden">
+                        <div class="grid md:grid-cols-2 gap-6 items-center">
+                            <div>
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Да, современные методы, такие как лазерное удаление, позволяют эффективно удалить татуировку. Однако процесс может быть длительным и требовать нескольких сеансов. Также возможно перекрытие старой татуировки новой.
+                                </p>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Мы предлагаем консультацию по удалению татуировок и можем помочь с выбором лучшего варианта для вашей ситуации.
+                                </p>
+                            </div>
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&h=400&fit=crop&crop=center" 
+                                     alt="Лазерное удаление татуировки" 
+                                     class="w-full h-64 object-cover rounded-xl shadow-2xl">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+                    <button class="faq-question w-full text-left flex justify-between items-center group">
+                        <h3 class="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">Выгорает ли татуировка со временем?</h3>
+                        <i class="fas fa-chevron-down text-purple-400 transform transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer mt-6 hidden">
+                        <div class="grid md:grid-cols-2 gap-6 items-center">
+                            <div>
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Пигменты татуировки могут выгорать под воздействием ультрафиолетовых лучей. Рекомендуется защищать татуировку от интенсивного солнечного света, используя солнцезащитные кремы или закрывая её одеждой.
+                                </p>
+                                <p class="text-gray-300 leading-relaxed">
+                                    При правильном уходе и защите от солнца татуировка может сохранять яркость и четкость на протяжении многих лет.
+                                </p>
+                            </div>
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&h=400&fit=crop&crop=center" 
+                                     alt="Защита татуировки от солнца" 
+                                     class="w-full h-64 object-cover rounded-xl shadow-2xl">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-black text-white py-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -634,6 +1005,7 @@
                     <a href="#about" class="text-gray-400 hover:text-purple-500 transition-colors">О нас</a>
                     <a href="#services" class="text-gray-400 hover:text-purple-500 transition-colors">Услуги</a>
                     <a href="#portfolio" class="text-gray-400 hover:text-purple-500 transition-colors">Портфолио</a>
+                    <a href="#faq" class="text-gray-400 hover:text-purple-500 transition-colors">FAQ</a>
                     <a href="#contact" class="text-gray-400 hover:text-purple-500 transition-colors">Контакты</a>
                 </div>
                 
@@ -725,7 +1097,7 @@
             cards.forEach(card => observer.observe(card));
         });
 
-        // Add fade-in animation CSS
+        // Add fade-in animation CSS and image optimization
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fade-in-up {
@@ -741,13 +1113,371 @@
             .animate-fade-in-up {
                 animation: fade-in-up 0.6s ease-out;
             }
+            
+            /* Smooth image transitions for rotation */
+            .grid.grid-cols-2.gap-2 img {
+                transition: opacity 0.3s ease-in-out;
+            }
+            
+            .grid.grid-cols-2.gap-2 img.opacity-50 {
+                opacity: 0.5;
+            }
+            
+            /* Optimize image loading */
+            .grid.grid-cols-2.gap-2 img {
+                will-change: transform;
+                backface-visibility: hidden;
+            }
         `;
         document.head.appendChild(style);
+
+        // Global rotation state for all masters
+        const globalRotationState = {
+            currentWorkIndex: 0, // Which work to update (0, 1, or 2)
+            currentRotationCycle: 0, // Current rotation cycle
+            rotationInterval: null
+        };
+
+        // Individual master data
+        const masterWorksRotation = {
+            renoit: {
+                totalWorks: 36,
+                currentIndex: 0
+            },
+            rocket: {
+                totalWorks: 8,
+                currentIndex: 0
+            },
+            lozhkin: {
+                totalWorks: 14,
+                currentIndex: 0
+            },
+            nastasia: {
+                totalWorks: 8,
+                currentIndex: 0
+            },
+            dina: {
+                totalWorks: 10,
+                currentIndex: 0
+            },
+            barabanov: {
+                totalWorks: 15,
+                currentIndex: 0
+            },
+            flo: {
+                totalWorks: 15,
+                currentIndex: 0
+            },
+            atlasov: {
+                totalWorks: 43,
+                currentIndex: 0
+            },
+            leyla: {
+                totalWorks: 10,
+                currentIndex: 0
+            }
+        };
+
+        // Function to generate optimized image URL (for thumbnails)
+        function getOptimizedImageUrl(masterId, workId, extension) {
+            // Use original images for now, but we can optimize them later
+            // For better performance, we could create thumbnail versions
+            return `gallery/${masterId}/${masterId}-work-${workId}${extension}`;
+        }
+
+        // Function to create optimized thumbnail with size parameters
+        function getThumbnailUrl(masterId, workId, extension, width = 150, height = 150) {
+            // Try to use thumbnail version if it exists, otherwise fallback to original
+            const thumbnailPath = `gallery/${masterId}/thumbnails/${masterId}-work-${workId}_thumb.jpg`;
+            const originalPath = `gallery/${masterId}/${masterId}-work-${workId}${extension}`;
+            
+            // For now, return original image (thumbnails will be created by PowerShell script)
+            // TODO: Implement thumbnail checking and fallback
+            return originalPath;
+        }
+
+        // Function to get current works for a master (3 different works)
+        function getCurrentWorks(masterId) {
+            const master = masterWorksRotation[masterId];
+            if (!master) return [];
+            
+            const works = [];
+            const startIndex = master.currentIndex;
+            
+            // Get 3 sequential works starting from current index
+            for (let i = 0; i < 3 && i < master.totalWorks; i++) {
+                let workIndex = ((startIndex + i) % master.totalWorks) + 1;
+                
+                // Special handling for masters with excluded works
+                if (masterId === 'rocket' && workIndex === 7) {
+                    // Skip work 7 for rocket (it's excluded)
+                    workIndex = 8;
+                }
+                
+                works.push(workIndex);
+            }
+            
+            return works;
+        }
+
+        // Function to get work for a specific position (0, 1, or 2)
+        function getWorkForPosition(masterId, position) {
+            const master = masterWorksRotation[masterId];
+            if (!master) return null;
+            
+            // Calculate work index based on current rotation cycle and position
+            let workIndex = ((master.currentIndex + position) % master.totalWorks) + 1;
+            
+            // Special handling for masters with excluded works
+            if (masterId === 'rocket' && workIndex === 7) {
+                // Skip work 7 for rocket (it's excluded)
+                workIndex = 8;
+            }
+            
+            console.log(`Master ${masterId}, position ${position}: currentIndex=${master.currentIndex}, workIndex=${workIndex}`);
+            
+            return workIndex;
+        }
+
+        // Function to update single position on all master cards (optimized for speed)
+        function updateSinglePositionOnAllCards(position) {
+            console.log(`=== UPDATING POSITION ${position} ON ALL CARDS ===`);
+            
+            // Collect all updates first
+            const updates = [];
+            
+            Object.keys(masterWorksRotation).forEach(masterId => {
+                const workId = getWorkForPosition(masterId, position);
+                if (!workId) {
+                    console.log(`No work found for master ${masterId}, position ${position}`);
+                    return;
+                }
+                
+                // Find the specific master card
+                const cards = document.querySelectorAll('[onclick*="openMasterGallery"]');
+                let targetCard = null;
+                
+                for (let card of cards) {
+                    const onclick = card.getAttribute('onclick');
+                    if (onclick && onclick.includes(`openMasterGallery('${masterId}')`)) {
+                        targetCard = card;
+                        break;
+                    }
+                }
+                
+                if (!targetCard) {
+                    console.log(`Card not found for master ${masterId}`);
+                    return;
+                }
+                
+                const worksContainer = targetCard.querySelector('.grid.grid-cols-2.gap-2');
+                if (!worksContainer) return;
+                
+                const workDiv = worksContainer.children[position];
+                if (!workDiv || workDiv.tagName !== 'DIV') return;
+                
+                const img = workDiv.querySelector('img');
+                if (!img) return;
+                
+                // Determine file extension based on master
+                let extension = '.jpg';
+                if (masterId === 'dina') {
+                    const extensions = ['.jpg', '.jpg', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG'];
+                    extension = extensions[workId - 1] || '.jpg';
+                } else if (masterId === 'barabanov') {
+                    const extensions = ['.JPG', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG'];
+                    extension = extensions[workId - 1] || '.jpg';
+                } else if (masterId === 'flo') {
+                    const extensions = ['.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.JPG', '.JPG', '.JPG'];
+                    extension = extensions[workId - 1] || '.jpg';
+                }
+                
+                const newSrc = getThumbnailUrl(masterId, workId, extension, 200, 200);
+                
+                updates.push({
+                    masterId,
+                    workId,
+                    img,
+                    workDiv,
+                    newSrc,
+                    position
+                });
+            });
+            
+            console.log(`Found ${updates.length} cards to update for position ${position}`);
+            
+            // Apply all updates simultaneously
+            updates.forEach(({ masterId, workId, img, workDiv, newSrc, position }) => {
+                // Add loading class for smooth transition
+                img.classList.add('opacity-50');
+                
+                // Use direct assignment for faster updates (no preloading for thumbnails)
+                img.src = newSrc;
+                img.alt = `Работа ${workId}`;
+                
+                // Update onclick event
+                workDiv.onclick = (e) => {
+                    e.stopPropagation();
+                    openMasterGallery(masterId);
+                    setTimeout(() => {
+                        highlightWorkInGallery(masterId, workId);
+                    }, 500);
+                };
+                
+                // Remove loading class after a short delay for visual effect
+                setTimeout(() => {
+                    img.classList.remove('opacity-50');
+                }, 200);
+                
+                console.log(`Updated master ${masterId}, position ${position} to work ${workId}`);
+            });
+        }
+
+        // Function to start global rotation
+        function startGlobalRotation() {
+            console.log('=== STARTING GLOBAL ROTATION ===');
+            
+            // Clear any existing interval
+            if (globalRotationState.rotationInterval) {
+                clearInterval(globalRotationState.rotationInterval);
+            }
+            
+            // Reset rotation state
+            globalRotationState.currentWorkIndex = 0;
+            globalRotationState.currentRotationCycle = 0;
+            
+            // Set all master indices to 3 so first rotation shows works 4, 5, 6
+            // Cards are initialized with works 1, 2, 3, so rotation should show 4, 5, 6
+            Object.keys(masterWorksRotation).forEach(masterId => {
+                masterWorksRotation[masterId].currentIndex = 3;
+            });
+            
+            console.log('Initial state set - all masters start from index 3 (will show works 4, 5, 6)');
+            console.log('Cards are initialized with works 1, 2, 3 - rotation will start showing works 4, 5, 6 every 3 seconds');
+            debugRotationState();
+            
+            // Set up rotation interval (every 3 seconds)
+            globalRotationState.rotationInterval = setInterval(() => {
+                console.log(`=== ROTATION STEP: Updating position ${globalRotationState.currentWorkIndex} ===`);
+                
+                // Update current position on all cards
+                updateSinglePositionOnAllCards(globalRotationState.currentWorkIndex);
+                
+                // Move to next position
+                globalRotationState.currentWorkIndex = (globalRotationState.currentWorkIndex + 1) % 3;
+                
+                // If we've completed a full cycle (0->1->2->0), advance all masters by 3 works
+                if (globalRotationState.currentWorkIndex === 0) {
+                    globalRotationState.currentRotationCycle++;
+                    Object.keys(masterWorksRotation).forEach(masterId => {
+                        masterWorksRotation[masterId].currentIndex = (masterWorksRotation[masterId].currentIndex + 3) % masterWorksRotation[masterId].totalWorks;
+                    });
+                    console.log(`Completed full cycle ${globalRotationState.currentRotationCycle} - advanced all masters by 3 works`);
+                    debugRotationState();
+                }
+            }, 3000);
+        }
+
+        // Function to stop global rotation
+        function stopGlobalRotation() {
+            if (globalRotationState.rotationInterval) {
+                clearInterval(globalRotationState.rotationInterval);
+                globalRotationState.rotationInterval = null;
+                console.log('Global rotation stopped');
+            }
+        }
+
+        // Global variable to track rotation state
+        let rotationEnabled = false;
+
+        // Function to highlight specific work in gallery
+        function highlightWorkInGallery(masterId, workId) {
+            const galleryGrid = document.getElementById(`${masterId}-gallery-grid`);
+            if (galleryGrid) {
+                const workElements = galleryGrid.querySelectorAll('.gallery-item');
+                if (workElements[workId - 1]) {
+                    // Scroll to the work
+                    workElements[workId - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Add highlight effect
+                    workElements[workId - 1].style.transform = 'scale(1.05)';
+                    workElements[workId - 1].style.boxShadow = '0 0 20px rgba(147, 51, 234, 0.5)';
+                    workElements[workId - 1].style.border = '2px solid rgba(147, 51, 234, 0.8)';
+                    workElements[workId - 1].style.transition = 'all 0.3s ease';
+                    
+                    // Remove highlight after 3 seconds
+                    setTimeout(() => {
+                        workElements[workId - 1].style.transform = '';
+                        workElements[workId - 1].style.boxShadow = '';
+                        workElements[workId - 1].style.border = '';
+                    }, 3000);
+                }
+            }
+        }
+
+        // Function to initialize all cards with current works
+        function initializeAllCards() {
+            Object.keys(masterWorksRotation).forEach(masterId => {
+                const currentWorks = getCurrentWorks(masterId);
+                
+                // Find the specific master card
+                const cards = document.querySelectorAll('[onclick*="openMasterGallery"]');
+                let targetCard = null;
+                
+                for (let card of cards) {
+                    const onclick = card.getAttribute('onclick');
+                    if (onclick && onclick.includes(`openMasterGallery('${masterId}')`)) {
+                        targetCard = card;
+                        break;
+                    }
+                }
+                
+                if (!targetCard) return;
+                
+                const worksContainer = targetCard.querySelector('.grid.grid-cols-2.gap-2');
+                if (!worksContainer) return;
+                
+                // Update all three positions
+                currentWorks.forEach((workId, position) => {
+                    const workDiv = worksContainer.children[position];
+                    if (!workDiv || workDiv.tagName !== 'DIV') return;
+                    
+                    const img = workDiv.querySelector('img');
+                    if (!img) return;
+                    
+                // Determine file extension
+                let extension = '.jpg';
+                if (masterId === 'dina') {
+                    const extensions = ['.jpg', '.jpg', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG'];
+                    extension = extensions[workId - 1] || '.jpg';
+                } else if (masterId === 'barabanov') {
+                        const extensions = ['.JPG', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG'];
+                        extension = extensions[workId - 1] || '.jpg';
+                    } else if (masterId === 'flo') {
+                        const extensions = ['.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.JPG', '.JPG', '.JPG'];
+                        extension = extensions[workId - 1] || '.jpg';
+                    }
+                    
+                    const newSrc = getOptimizedImageUrl(masterId, workId, extension);
+                    img.src = newSrc;
+                    img.alt = `Работа ${workId}`;
+                    
+                    // Update onclick event
+                    workDiv.onclick = (e) => {
+                        e.stopPropagation();
+                        openMasterGallery(masterId);
+                        setTimeout(() => {
+                            highlightWorkInGallery(masterId, workId);
+                        }, 500);
+                    };
+                });
+            });
+        }
 
         // Master Gallery Data
         const masterData = {
             renoit: {
-                name: 'Алексей Renoit',
+                name: 'Алексей',
                 works: 36, // 38 - 2 (master-photo и дубликат work-27)
                 worksPerPage: 9,
                 style: 'Реализм',
@@ -757,25 +1487,25 @@
                         id: id,
                         src: `gallery/renoit/renoit-work-${id}.jpg`,
                         title: `Работа ${id}`,
-                        style: 'Реализм • Алексей Renoit'
+                        style: 'Реализм • Алексей'
                     }))
             },
             rocket: {
-                name: 'Булат Rocket',
-                works: 9, // 10 - 1 (дубликат work-7)
+                name: 'Булат',
+                works: 8, // 9 - 1 (удален дубликат work-7)
                 worksPerPage: 9,
                 style: 'Графика',
-                works: Array.from({length: 10}, (_, i) => i + 1)
-                    .filter(num => num !== 7) // Исключаем work-7 (дубликат аватара)
+                works: Array.from({length: 9}, (_, i) => i + 1)
+                    .filter(num => num !== 7) // Исключаем work-7 (удален дубликат)
                     .map((id, index) => ({
                         id: id,
                         src: `gallery/rocket/rocket-work-${id}.jpg`,
                         title: `Работа ${id}`,
-                        style: 'Графика • Булат Rocket'
+                        style: 'Графика • Булат'
                     }))
             },
             lozhkin: {
-                name: 'Арсений Ложкин',
+                name: 'Арсений',
                 works: 14, // 14 работ + 1 аватар
                 worksPerPage: 9,
                 style: 'Японская татуировка',
@@ -784,11 +1514,11 @@
                         id: id,
                         src: `gallery/lozhkin/lozhkin-work-${id}.jpg`,
                         title: `Работа ${id}`,
-                        style: 'Японская татуировка • Арсений Ложкин'
+                        style: 'Японская татуировка • Арсений'
                     }))
             },
             nastasia: {
-                name: 'Анастасия Красное Микеланджело',
+                name: 'Анастасия',
                 works: 8, // 8 работ + 1 аватар
                 worksPerPage: 9,
                 style: 'Реализм, Чикано',
@@ -797,29 +1527,29 @@
                         id: id,
                         src: `gallery/nastasia/nastasia-work-${id}.jpg`,
                         title: `Работа ${id}`,
-                        style: 'Реализм • Анастасия Красное Микеланджело'
+                        style: 'Реализм • Анастасия'
                     }))
             },
             dina: {
-                name: 'Дина Synthetica',
+                name: 'Дина',
                 works: 10, // 10 работ + 1 аватар
                 worksPerPage: 9,
                 style: 'Акварельная, Ботаническая',
                 works: Array.from({length: 10}, (_, i) => i + 1)
                     .map((id, index) => {
                         // Определяем расширение файла
-                        const extensions = ['.PNG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG'];
+                        const extensions = ['.jpg', '.jpg', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG'];
                         const ext = extensions[id - 1] || '.jpg';
                         return {
                             id: id,
                             src: `gallery/dina/dina-work-${id}${ext}`,
                             title: `Работа ${id}`,
-                            style: 'Акварель • Дина Synthetica'
+                            style: 'Акварель • Дина'
                         };
                     })
             },
             barabanov: {
-                name: 'Михаил Барабанов',
+                name: 'Михаил Б.',
                 works: 15, // 15 работ + 1 аватар (16 - 1 аватар)
                 worksPerPage: 9,
                 style: 'Neotraditional',
@@ -832,12 +1562,12 @@
                             id: id,
                             src: `gallery/barabanov/barabanov-work-${id}${ext}`,
                             title: `Работа ${id}`,
-                            style: 'Neotraditional • Михаил Барабанов'
+                            style: 'Neotraditional • Михаил Б.'
                         };
                     })
             },
             flo: {
-                name: 'Фларик Ахметов',
+                name: 'Фларик',
                 works: 15, // 15 работ + 1 аватар
                 worksPerPage: 9,
                 style: 'Орнаментал, Полинезия, Борнео',
@@ -850,9 +1580,35 @@
                             id: id,
                             src: `gallery/flo/flo-work-${id}${ext}`,
                             title: `Работа ${id}`,
-                            style: 'Орнаментал • Фларик Ахметов'
+                            style: 'Орнаментал • Фларик'
                         };
                     })
+            },
+            atlasov: {
+                name: 'Михаил А.',
+                works: 43, // 43 работы + 1 аватар
+                worksPerPage: 9,
+                style: 'Минималистичная татуировка',
+                works: Array.from({length: 43}, (_, i) => i + 1)
+                    .map((id, index) => ({
+                        id: id,
+                        src: `gallery/atlasov/atlasov-work-${id}.jpg`,
+                        title: `Работа ${id}`,
+                        style: 'Минимализм • Михаил А.'
+                    }))
+            },
+            leyla: {
+                name: 'Лейла',
+                works: 10, // 10 работ + 1 аватар
+                worksPerPage: 9,
+                style: 'Орнаментальная татуировка',
+                works: Array.from({length: 10}, (_, i) => i + 1)
+                    .map((id, index) => ({
+                        id: id,
+                        src: `gallery/leyla/leyla-work-${id}.jpg`,
+                        title: `Работа ${id}`,
+                        style: 'Орнаментал • Лейла'
+                    }))
             }
         };
 
@@ -864,7 +1620,9 @@
             nastasia: { currentPage: 1 },
             dina: { currentPage: 1 },
             barabanov: { currentPage: 1 },
-            flo: { currentPage: 1 }
+            flo: { currentPage: 1 },
+            atlasov: { currentPage: 1 },
+            leyla: { currentPage: 1 }
         };
 
         // Master Gallery Functions
@@ -1557,6 +2315,171 @@ Email: ${clientEmail || 'Не указан'}
                 closeWaitingListModal();
             }
         });
+
+        // Performance optimization: Preload images for better rotation
+        function preloadMasterImages() {
+            console.log('Preloading master images for faster rotation...');
+            
+            Object.keys(masterWorksRotation).forEach(masterId => {
+                const master = masterWorksRotation[masterId];
+                // Preload first 9 images for each master (enough for smooth rotation cycles)
+                for (let i = 1; i <= Math.min(9, master.totalWorks); i++) {
+                    let extension = '.jpg';
+                    if (masterId === 'dina') {
+                        const extensions = ['.jpg', '.jpg', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG'];
+                        extension = extensions[i - 1] || '.jpg';
+                    } else if (masterId === 'barabanov') {
+                        const extensions = ['.JPG', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG'];
+                        extension = extensions[i - 1] || '.jpg';
+                    } else if (masterId === 'flo') {
+                        const extensions = ['.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.JPG', '.JPG', '.JPG'];
+                        extension = extensions[i - 1] || '.jpg';
+                    }
+                    
+                    const img = new Image();
+                    img.loading = 'lazy';
+                    img.src = `gallery/${masterId}/${masterId}-work-${i}${extension}`;
+                }
+            });
+            
+            console.log('Image preloading completed');
+        }
+
+        // Function to update all master cards with optimized click handlers
+        function updateAllMasterCardsClickHandlers() {
+            const masters = ['renoit', 'rocket', 'lozhkin', 'nastasia', 'dina', 'barabanov', 'flo', 'atlasov', 'leyla'];
+            
+            masters.forEach(masterId => {
+                const card = document.querySelector(`[onclick*="openMasterGallery('${masterId}')"]`);
+                if (card) {
+                    const workImages = card.querySelectorAll('.grid.grid-cols-2.gap-2 img');
+                    workImages.forEach((img, index) => {
+                        const workId = index + 1;
+                        const parentDiv = img.parentElement;
+                        
+                        // Update onclick handler
+                        parentDiv.onclick = (e) => {
+                            e.stopPropagation();
+                            openMasterGallery(masterId);
+                            setTimeout(() => highlightWorkInGallery(masterId, workId), 500);
+                        };
+                        
+                        // Add loading lazy attribute if not present
+                        if (!img.hasAttribute('loading')) {
+                            img.setAttribute('loading', 'lazy');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Make functions globally available for debugging
+        window.startGlobalRotation = startGlobalRotation;
+        window.stopGlobalRotation = stopGlobalRotation;
+        window.updateSinglePositionOnAllCards = updateSinglePositionOnAllCards;
+        window.initializeAllCards = initializeAllCards;
+        window.getCurrentWorks = getCurrentWorks;
+        window.initializeRotation = initializeRotation;
+        
+        // Force start rotation function
+        window.forceStartRotation = function() {
+            console.log('Force starting rotation...');
+            initializeRotation();
+        };
+        
+        // Debug function to show current state
+        window.debugRotationState = function() {
+            console.log('=== ROTATION DEBUG STATE ===');
+            console.log('Global state:', globalRotationState);
+            console.log('Current work index:', globalRotationState.currentWorkIndex);
+            console.log('Current rotation cycle:', globalRotationState.currentRotationCycle);
+            console.log('Master states:');
+            Object.keys(masterWorksRotation).forEach(masterId => {
+                const works = getCurrentWorks(masterId);
+                console.log(`  ${masterId}: index ${masterWorksRotation[masterId].currentIndex}, works [${works.join(', ')}]`);
+            });
+        };
+        
+        // Test function to manually test position updates
+        window.testPositionUpdate = function(position) {
+            console.log(`=== MANUAL TEST: Updating position ${position} ===`);
+            updateSinglePositionOnAllCards(position);
+        };
+        
+        // Function to restart rotation with proper initialization
+        window.restartRotation = function() {
+            console.log('=== RESTARTING ROTATION ===');
+            stopGlobalRotation();
+            
+            // Wait a bit then restart
+            setTimeout(() => {
+                startGlobalRotation();
+            }, 500);
+        };
+
+        // Function to initialize rotation
+        function initializeRotation() {
+            console.log('Initializing rotation...');
+            
+            // Preload images for better performance
+            preloadMasterImages();
+            
+            // Initialize all cards with current works (this sets the initial 3 works)
+            setTimeout(() => {
+                console.log('Initializing all cards with initial works...');
+                initializeAllCards();
+            }, 500);
+            
+            // Start global rotation automatically after cards are initialized
+            setTimeout(() => {
+                console.log('Starting global rotation automatically...');
+                startGlobalRotation();
+            }, 1000); // Reduced delay since we don't need the immediate update
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded event fired');
+            initializeRotation();
+        });
+
+        // Fallback initialization if DOMContentLoaded already fired
+        if (document.readyState === 'loading') {
+            console.log('Document still loading, waiting for DOMContentLoaded');
+        } else {
+            console.log('Document already loaded, initializing immediately');
+            setTimeout(() => {
+                initializeRotation();
+            }, 100);
+        }
+
+        // Force initialization after a delay to ensure everything is ready
+        setTimeout(() => {
+            console.log('Force initialization check...');
+            if (!globalRotationState.rotationInterval) {
+                console.log('Rotation not started, force starting...');
+                initializeRotation();
+            }
+        }, 2000);
+
+        // Pause rotation when page is not visible (performance optimization)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopGlobalRotation();
+            } else {
+                startGlobalRotation();
+            }
+        });
+
+        // Pause rotation when user scrolls (performance optimization)
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            stopGlobalRotation();
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                startGlobalRotation();
+            }, 2000); // Resume rotation 2 seconds after scrolling stops
+        });
     </script>
 
     <!-- Master Gallery Modals -->
@@ -1564,7 +2487,7 @@ Email: ${clientEmail || 'Не указан'}
     <div id="renoit-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
             <div class="bg-gradient-to-r from-purple-500 to-orange-500 text-white p-6 flex justify-between items-center">
-                <h2 class="text-xl font-bold">Алексей Renoit - Мастер татуировки</h2>
+                <h2 class="text-xl font-bold">Алексей - Мастер татуировки</h2>
                 <button onclick="closeMasterGallery('renoit')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
             
@@ -1625,7 +2548,7 @@ Email: ${clientEmail || 'Не указан'}
     <div id="rocket-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
             <div class="bg-gradient-to-r from-orange-500 to-purple-500 text-white p-6 flex justify-between items-center">
-                <h2 class="text-xl font-bold">Булат Rocket - Мастер татуировки</h2>
+                <h2 class="text-xl font-bold">Булат - Мастер татуировки</h2>
                 <button onclick="closeMasterGallery('rocket')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
             
@@ -1686,7 +2609,7 @@ Email: ${clientEmail || 'Не указан'}
     <div id="lozhkin-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
             <div class="bg-gradient-to-r from-red-500 to-pink-500 text-white p-6 flex justify-between items-center">
-                <h2 class="text-xl font-bold">Арсений Ложкин - Мастер японской татуировки</h2>
+                <h2 class="text-xl font-bold">Арсений - Мастер японской татуировки</h2>
                 <button onclick="closeMasterGallery('lozhkin')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
             
@@ -1748,7 +2671,7 @@ Email: ${clientEmail || 'Не указан'}
     <div id="nastasia-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
             <div class="bg-gradient-to-r from-pink-500 to-red-500 text-white p-6 flex justify-between items-center">
-                <h2 class="text-xl font-bold">Анастасия "Красное Микеланджело" - Мастер реализма и чикано</h2>
+                <h2 class="text-xl font-bold">Анастасия - Мастер реализма и чикано</h2>
                 <button onclick="closeMasterGallery('nastasia')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
             
@@ -1881,7 +2804,7 @@ Email: ${clientEmail || 'Не указан'}
     <div id="barabanov-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
             <div class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-6 flex justify-between items-center">
-                <h2 class="text-xl font-bold">Михаил Барабанов - Гостевой мастер Neotraditional</h2>
+                <h2 class="text-xl font-bold">Михаил Б. - Гостевой мастер Neotraditional</h2>
                 <button onclick="closeMasterGallery('barabanov')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
             
@@ -1953,7 +2876,7 @@ Email: ${clientEmail || 'Не указан'}
     <div id="flo-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
             <div class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white p-6 flex justify-between items-center">
-                <h2 class="text-xl font-bold">Фларик Ахметов - Мастер орнаментальной, полинезийской и борнео татуировки</h2>
+                <h2 class="text-xl font-bold">Фларик - Мастер орнаментальной, полинезийской и борнео татуировки</h2>
                 <button onclick="closeMasterGallery('flo')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
             </div>
             
@@ -2012,6 +2935,148 @@ Email: ${clientEmail || 'Не указан'}
                     <!-- Gallery Grid -->
                     <div class="p-4 flex-1 overflow-y-auto">
                         <div id="flo-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Михаил Атласов Gallery -->
+    <div id="atlasov-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-gray-500 to-slate-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Михаил А. - Мастер минималистичной татуировки</h2>
+                <button onclick="closeMasterGallery('atlasov')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="text-center mb-4">
+                        <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="gallery/atlasov/master-photo.jpg" alt="Михаил Атласов" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800">Михаил Атласов</h3>
+                        <p class="text-gray-600 font-semibold text-sm">Минималистичная татуировка</p>
+                        <p class="text-gray-600 text-sm">10+ лет опыта</p>
+                        <span class="bg-gradient-to-r from-gray-500 to-slate-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-700 space-y-3">
+                        <p><strong>Специализация:</strong> Минималистичная татуировка</p>
+                        <p><strong>Опыт работы:</strong> 10+ лет</p>
+                        <p><strong>Стили:</strong> Минимализм, геометрия, линейная графика, черно-белое</p>
+                        
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">О мастере:</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                Михаил Атласов - опытный мастер минималистичной татуировки с более чем 10-летним стажем. 
+                                Специализируется на создании чистых, элегантных работ в стиле минимализм. 
+                                Его работы отличаются точными линиями, продуманной композицией и философией "меньше - значит больше". 
+                                Михаил создаёт татуировки, которые остаются актуальными и красивыми на протяжении многих лет, 
+                                сочетая простоту форм с глубоким смыслом.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="atlasov-current-page" class="font-bold text-gray-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="atlasov-total-pages" class="font-bold text-gray-600">1</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('atlasov')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('atlasov')" class="px-3 py-1 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="atlasov-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                            <!-- Works will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Лейла Gallery -->
+    <div id="leyla-gallery" class="gallery-modal fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-6 flex justify-between items-center">
+                <h2 class="text-xl font-bold">Лейла - Мастер орнаментальной татуировки</h2>
+                <button onclick="closeMasterGallery('leyla')" class="text-white hover:text-gray-300 text-3xl font-bold">&times;</button>
+            </div>
+            
+            <!-- Main Content Layout -->
+            <div class="flex flex-col lg:flex-row h-full">
+                <!-- Master Info Section - Left Side -->
+                <div class="lg:w-1/3 bg-gray-50 p-4 border-r">
+                    <div class="text-center mb-4">
+                        <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="gallery/leyla/master-photo.jpg" alt="Лейла" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800">Лейла</h3>
+                        <p class="text-indigo-600 font-semibold text-sm">Орнаментальная татуировка</p>
+                        <p class="text-gray-600 text-sm">5 лет опыта</p>
+                        <span class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">🏛️ Резидент студии</span>
+                    </div>
+                    
+                    <div class="text-sm text-gray-700 space-y-3">
+                        <p><strong>Специализация:</strong> Орнаментальная татуировка</p>
+                        <p><strong>Опыт работы:</strong> 5 лет</p>
+                        <p><strong>Стили:</strong> Орнаментал, геометрия, черно-белое, линейная графика</p>
+                        
+                        <div class="mt-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">О мастере:</h4>
+                            <p class="text-gray-600 text-xs leading-relaxed">
+                                Лейла - талантливый мастер орнаментальной татуировки с 5-летним опытом работы. 
+                                Специализируется на создании сложных геометрических композиций и орнаментальных узоров. 
+                                Её работы отличаются точностью линий, продуманной симметрией и эстетическим совершенством. 
+                                Лейла создаёт татуировки, которые сочетают в себе современный подход с традиционными 
+                                орнаментальными мотивами, создавая уникальные и стильные работы.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Section - Right Side -->
+                <div class="lg:w-2/3 flex flex-col">
+                    <!-- Gallery Controls -->
+                    <div class="bg-white p-3 border-b flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-600">Работы:</span>
+                            <span id="leyla-current-page" class="font-bold text-indigo-600">1</span>
+                            <span class="text-gray-400">из</span>
+                            <span id="leyla-total-pages" class="font-bold text-gray-600">1</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="previousPage('leyla')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors text-sm">
+                                <i class="fas fa-chevron-left"></i> Назад
+                            </button>
+                            <button onclick="nextPage('leyla')" class="px-3 py-1 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-colors text-sm">
+                                Вперед <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div class="p-4 flex-1 overflow-y-auto">
+                        <div id="leyla-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                             <!-- Works will be loaded dynamically -->
                         </div>
                     </div>
@@ -2212,5 +3277,267 @@ Email: ${clientEmail || 'Не указан'}
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    
+    <!-- FAQ Fallback Script -->
+    <script>
+        // Fallback FAQ initialization
+        function initFAQFallback() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            console.log('FAQ fallback: Found', faqItems.length, 'FAQ items');
+            
+            faqItems.forEach((item, index) => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                
+                if (question && answer && icon) {
+                    question.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('FAQ clicked:', index + 1);
+                        
+                        const isOpen = !answer.classList.contains('hidden');
+                        
+                        // Close all other items
+                        faqItems.forEach((otherItem, otherIndex) => {
+                            if (otherIndex !== index) {
+                                const otherAnswer = otherItem.querySelector('.faq-answer');
+                                const otherIcon = otherItem.querySelector('.faq-icon');
+                                if (otherAnswer && otherIcon) {
+                                    otherAnswer.classList.add('hidden');
+                                    otherIcon.style.transform = 'rotate(0deg)';
+                                }
+                            }
+                        });
+                        
+                        // Toggle current item
+                        if (isOpen) {
+                            answer.classList.add('hidden');
+                            icon.style.transform = 'rotate(0deg)';
+                        } else {
+                            answer.classList.remove('hidden');
+                            icon.style.transform = 'rotate(180deg)';
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Initialize FAQ when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFAQFallback);
+        } else {
+            initFAQFallback();
+        }
+    </script>
+
+    <!-- Works Rotation Script -->
+    <script>
+        // Global rotation state
+        let globalRotationState = {
+            currentWorkIndex: 0, // 0, 1, or 2 (which position to update)
+            currentRotationCycle: 0,
+            rotationInterval: null
+        };
+
+        // Master works rotation data
+        const masterWorksRotation = {
+            renoit: { currentIndex: 3, totalWorks: 40 },
+            rocket: { currentIndex: 3, totalWorks: 8 },
+            lozhkin: { currentIndex: 3, totalWorks: 14 },
+            nastasia: { currentIndex: 3, totalWorks: 9 },
+            dina: { currentIndex: 3, totalWorks: 10 },
+            barabanov: { currentIndex: 3, totalWorks: 15 },
+            flo: { currentIndex: 3, totalWorks: 15 },
+            atlasov: { currentIndex: 3, totalWorks: 43 },
+            leyla: { currentIndex: 3, totalWorks: 10 }
+        };
+
+        // Master data configuration
+        const masterData = {
+            renoit: { works: 40, extensions: ['jpg', 'jpg', 'jpg'] },
+            rocket: { works: 8, extensions: ['jpg', 'jpg', 'jpg'] },
+            lozhkin: { works: 14, extensions: ['jpg', 'jpg', 'jpg'] },
+            nastasia: { works: 9, extensions: ['jpg', 'jpg', 'jpg'] },
+            dina: { works: 10, extensions: ['jpg', 'jpg', 'JPEG'] },
+            barabanov: { works: 15, extensions: ['JPG', 'JPG', 'JPG'] },
+            flo: { works: 15, extensions: ['JPG', 'JPG', 'jpg'] },
+            atlasov: { works: 43, extensions: ['jpg', 'jpg', 'jpg'] },
+            leyla: { works: 10, extensions: ['jpg', 'jpg', 'jpg'] }
+        };
+
+        // Get work for specific position
+        function getWorkForPosition(masterId, position) {
+            const master = masterWorksRotation[masterId];
+            if (!master) return 1;
+            
+            let workIndex = ((master.currentIndex + position) % master.totalWorks) + 1;
+            
+            // Skip work 7 for rocket master
+            if (masterId === 'rocket' && workIndex === 7) {
+                workIndex = 8;
+            }
+            
+            return workIndex;
+        }
+
+        // Get current 3 works for master
+        function getCurrentWorks(masterId) {
+            return [
+                getWorkForPosition(masterId, 0),
+                getWorkForPosition(masterId, 1),
+                getWorkForPosition(masterId, 2)
+            ];
+        }
+
+        // Update single position on all cards
+        function updateSinglePositionOnAllCards(position) {
+            console.log(`Обновление позиции ${position} на всех карточках`);
+            
+            Object.keys(masterWorksRotation).forEach(masterId => {
+                const workIndex = getWorkForPosition(masterId, position);
+                const master = masterData[masterId];
+                const extension = master.extensions[position] || 'jpg';
+                const newSrc = `gallery/${masterId}/${masterId}-work-${workIndex}.${extension}`;
+                
+                // Find the master card
+                const masterCard = document.querySelector(`[onclick*="openMasterGallery('${masterId}')"]`);
+                if (masterCard) {
+                    const workImages = masterCard.querySelectorAll('.aspect-square img');
+                    if (workImages[position]) {
+                        // Add opacity effect
+                        workImages[position].classList.add('opacity-50');
+                        
+                        // Update image
+                        workImages[position].src = newSrc;
+                        
+                        // Remove opacity after a short delay
+                        setTimeout(() => {
+                            workImages[position].classList.remove('opacity-50');
+                        }, 150);
+                        
+                        console.log(`Обновлена карточка ${masterId}, позиция ${position}, работа ${workIndex}`);
+                    }
+                }
+            });
+        }
+
+        // Start global rotation
+        function startGlobalRotation() {
+            if (globalRotationState.rotationInterval) {
+                clearInterval(globalRotationState.rotationInterval);
+            }
+            
+            console.log('Запуск глобальной ротации работ');
+            
+            globalRotationState.rotationInterval = setInterval(() => {
+                console.log(`Цикл ротации: ${globalRotationState.currentRotationCycle}, позиция: ${globalRotationState.currentWorkIndex}`);
+                
+                // Update current position
+                updateSinglePositionOnAllCards(globalRotationState.currentWorkIndex);
+                
+                // Move to next position
+                globalRotationState.currentWorkIndex++;
+                
+                // If we've completed a full cycle (3 positions), advance all masters
+                if (globalRotationState.currentWorkIndex >= 3) {
+                    globalRotationState.currentWorkIndex = 0;
+                    globalRotationState.currentRotationCycle++;
+                    
+                    // Advance all masters by 3 works
+                    Object.keys(masterWorksRotation).forEach(masterId => {
+                        masterWorksRotation[masterId].currentIndex += 3;
+                        console.log(`Мастер ${masterId}: currentIndex = ${masterWorksRotation[masterId].currentIndex}`);
+                    });
+                }
+            }, 3000); // 3 seconds interval
+        }
+
+        // Stop global rotation
+        function stopGlobalRotation() {
+            if (globalRotationState.rotationInterval) {
+                clearInterval(globalRotationState.rotationInterval);
+                globalRotationState.rotationInterval = null;
+                console.log('Ротация остановлена');
+            }
+        }
+
+        // Initialize all cards with first 3 works
+        function initializeAllCards() {
+            console.log('Инициализация карточек с первыми 3 работами');
+            
+            Object.keys(masterWorksRotation).forEach(masterId => {
+                const works = getCurrentWorks(masterId);
+                const master = masterData[masterId];
+                
+                const masterCard = document.querySelector(`[onclick*="openMasterGallery('${masterId}')"]`);
+                if (masterCard) {
+                    const workImages = masterCard.querySelectorAll('.aspect-square img');
+                    works.forEach((workIndex, position) => {
+                        if (workImages[position]) {
+                            const extension = master.extensions[position] || 'jpg';
+                            workImages[position].src = `gallery/${masterId}/${masterId}-work-${workIndex}.${extension}`;
+                            workImages[position].loading = 'lazy';
+                        }
+                    });
+                    console.log(`Инициализирована карточка ${masterId}: работы ${works.join(', ')}`);
+                }
+            });
+        }
+
+        // Initialize rotation
+        function initializeRotation() {
+            console.log('Инициализация ротации работ');
+            initializeAllCards();
+            
+            // Start rotation after a short delay
+            setTimeout(() => {
+                startGlobalRotation();
+            }, 1000);
+        }
+
+        // Make functions globally available for debugging
+        window.startGlobalRotation = startGlobalRotation;
+        window.stopGlobalRotation = stopGlobalRotation;
+        window.updateSinglePositionOnAllCards = updateSinglePositionOnAllCards;
+        window.initializeAllCards = initializeAllCards;
+        window.getCurrentWorks = getCurrentWorks;
+        window.initializeRotation = initializeRotation;
+
+        // Start rotation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM загружен, инициализация ротации');
+            initializeRotation();
+        });
+
+        // Pause rotation when page is not visible
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopGlobalRotation();
+            } else {
+                setTimeout(startGlobalRotation, 500);
+            }
+        });
+
+        // Pause rotation when scrolling
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            stopGlobalRotation();
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                startGlobalRotation();
+            }, 1000);
+        });
+
+        // Force start rotation if not started after 2 seconds
+        setTimeout(() => {
+            if (!globalRotationState.rotationInterval) {
+                console.log('Принудительный запуск ротации');
+                initializeRotation();
+            }
+        }, 2000);
+    </script>
 </body>
 </html>
