@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Preload critical resources for better performance -->
@@ -21,6 +22,7 @@
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
                         'pacifico': ['Pacifico', 'cursive'],
+                        'hawaiian': ['Alfa Slab One', 'cursive'],
                     },
                     colors: {
                         'purple': {
@@ -114,7 +116,7 @@
             <div class="flex items-center justify-between h-20 py-2">
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
-                    <img src="logo.png" alt="Chill Ink Tattoo" class="w-20 h-20 rounded-full">
+                    <img src="logo.png" alt="Chill Ink Tattoo" class="w-16 h-16 rounded-lg">
                     <span class="text-3xl font-bold text-white font-pacifico tracking-wide">Chill Ink Tattoo</span>
                 </div>
 
@@ -167,11 +169,11 @@
                             Chill Ink
                         </span>
                         <br />
-                        <span class="text-white">Tattoo Studio</span>
+                        <span class="text-white font-hawaiian">Tattoo Studio</span>
                     </h1>
                     <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                        Профессиональные художественные татуировки в атмосфере комфорта и творчества. 
-                        Воплощаем ваши идеи в искусство на коже.
+                        Профессиональная художественная татуировка от лучших мастеров с многолетним опытом. 
+                        В комфортной и уютной обстановке воплощаем ваши идеи в искусство на коже.
                     </p>
                 </div>
 
@@ -179,36 +181,28 @@
                 <div class="flex flex-wrap justify-center gap-8 mb-12">
                     <div class="flex items-center space-x-2 text-gray-300">
                         <i class="fas fa-star text-yellow-500 text-xl"></i>
-                        <span class="text-lg">7+ лет опыта</span>
+                        <span class="text-lg">7 лет работы</span>
                     </div>
                     <div class="flex items-center space-x-2 text-gray-300">
                         <i class="fas fa-award text-purple-500 text-xl"></i>
-                        <span class="text-lg">500+ работ</span>
+                        <span class="text-lg">Тысячи довольных клиентов</span>
                     </div>
                     <div class="flex items-center space-x-2 text-gray-300">
                         <i class="fas fa-clock text-orange-500 text-xl"></i>
-                        <span class="text-lg">Ежедневно 10:00-21:00</span>
+                        <span class="text-lg">Ежедневно с 10:00 до 20:00</span>
                     </div>
                 </div>
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <button onclick="scrollToSection('contact')" class="bg-gradient-to-r from-purple-600 to-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                        Записаться на сеанс
+                        Записаться на бесплатную консультацию
                     </button>
                     <button onclick="scrollToSection('portfolio')" class="border-2 border-gray-500 text-gray-300 px-8 py-4 rounded-full text-lg font-semibold hover:border-purple-500 hover:text-purple-500 transition-all duration-300">
                         Смотреть работы
                     </button>
                 </div>
                 
-                <!-- Hero Image -->
-                <div class="mt-12 flex justify-center">
-                    <img 
-                        src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-fox.jpg" 
-                        alt="Интерьер тату студии Chill Ink" 
-                        class="w-full max-w-2xl rounded-2xl shadow-2xl"
-                    />
-                </div>
             </div>
         </div>
 
@@ -232,8 +226,9 @@
                 <div>
                     <h3 class="text-3xl font-bold mb-6 text-gray-900">Chill Ink Tattoo</h3>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Мы - команда профессиональных тату-мастеров, работающих в сфере художественной татуировки уже много лет. 
-                        Наша студия оснащена современным оборудованием и использует только качественные материалы.
+                        Мы собрали лучших мастеров нашего города и лучших гостевых мастеров России. 
+                        Имеем награды с международных конкурсов татуировок. Наша студия оснащена современным оборудованием 
+                        и использует только качественные материалы.
                     </p>
                     
                     <div class="grid grid-cols-3 gap-8">
@@ -253,11 +248,13 @@
                 </div>
                 
                 <div class="relative">
-                    <img 
-                        src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-dragon.jpg" 
-                        alt="Команда Chill Ink Tattoo" 
-                        class="w-full rounded-2xl shadow-2xl"
-                    />
+                    <div class="w-full h-96 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl flex items-center justify-center">
+                        <div class="text-center text-gray-600">
+                            <i class="fas fa-users text-6xl mb-4"></i>
+                            <p class="text-lg font-semibold">Наша команда</p>
+                            <p class="text-sm">Профессиональные мастера</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -271,7 +268,7 @@
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">Полный спектр услуг по художественной татуировке</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
                     <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                         <i class="fas fa-paint-brush text-white text-2xl"></i>
@@ -284,7 +281,7 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                         <i class="fas fa-redo text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-center">Перекрытие старых татуировок</h3>
+                    <h3 class="text-xl font-bold mb-4 text-center">Перекрытие старых/некачественных татуировок</h3>
                     <p class="text-gray-600 text-center">Профессиональное перекрытие старых или неудачных татуировок новыми работами</p>
                 </div>
                 
@@ -303,6 +300,22 @@
                     <h3 class="text-xl font-bold mb-4 text-center">Лазерное удаление</h3>
                     <p class="text-gray-600 text-center">Современные методы удаления татуировок с помощью лазерных технологий</p>
                 </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-comments text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Бесплатная консультация</h3>
+                    <p class="text-gray-600 text-center">Профессиональная консультация по выбору эскиза, размера и места нанесения татуировки</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-gift text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Подарочные сертификаты</h3>
+                    <p class="text-gray-600 text-center">Подарочные сертификаты на любую сумму для ваших близких и друзей</p>
+                </div>
             </div>
         </div>
     </section>
@@ -311,67 +324,76 @@
     <section id="portfolio" class="py-20 bg-gray-50 text-gray-900 pt-24">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Портфолио</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Лучшие работы наших мастеров</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Примеры работ мастеров</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Случайные работы наших мастеров</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Portfolio Slider -->
+            <div class="relative max-w-6xl mx-auto">
+                <div id="portfolio-slider" class="overflow-hidden rounded-2xl">
+                    <div class="flex transition-transform duration-500 ease-in-out" id="slider-container">
+                        <!-- Slides will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Navigation dots -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button class="w-3 h-3 rounded-full bg-purple-500 transition-all duration-300" onclick="currentSlide(1)"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" onclick="currentSlide(2)"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" onclick="currentSlide(3)"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" onclick="currentSlide(4)"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" onclick="currentSlide(5)"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" onclick="currentSlide(6)"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio Photos Section -->
+    <section id="studio-photos" class="py-20 bg-white text-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Наша студия</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Комфортная атмосфера для создания ваших татуировок</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-fox.jpg" alt="Лиса - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="photos_live/DSC_0302.jpg" alt="Интерьер студии Chill Ink" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div class="text-white">
-                            <h4 class="text-xl font-bold mb-2">Лиса</h4>
-                            <p class="text-gray-300">Реализм • Алексей Renoit</p>
+                            <h4 class="text-xl font-bold mb-2">Рабочее место</h4>
+                            <p class="text-gray-300">Современное оборудование</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-kitsune.jpg" alt="Маска Кицунэ - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="photos_live/IMG_3574.JPG" alt="Интерьер студии Chill Ink" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div class="text-white">
-                            <h4 class="text-xl font-bold mb-2">Маска Кицунэ</h4>
-                            <p class="text-gray-300">Японская традиция • Алексей Renoit</p>
+                            <h4 class="text-xl font-bold mb-2">Зона ожидания</h4>
+                            <p class="text-gray-300">Уютная атмосфера</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-owl.jpg" alt="Сова - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="photos_live/IMG_3587.JPG" alt="Интерьер студии Chill Ink" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div class="text-white">
-                            <h4 class="text-xl font-bold mb-2">Сова</h4>
-                            <p class="text-gray-300">Реализм • Алексей Renoit</p>
+                            <h4 class="text-xl font-bold mb-2">Процесс работы</h4>
+                            <p class="text-gray-300">Профессиональный подход</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-dragon.jpg" alt="Дракон - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <img src="photos_live/IMG_5404.jpg" alt="Интерьер студии Chill Ink" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div class="text-white">
-                            <h4 class="text-xl font-bold mb-2">Дракон</h4>
-                            <p class="text-gray-300">Фэнтези • Алексей Renoit</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-anime.jpg" alt="Аниме персонаж - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="text-white">
-                            <h4 class="text-xl font-bold mb-2">Аниме персонаж</h4>
-                            <p class="text-gray-300">Аниме стиль • Алексей Renoit</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <img src="https://raw.githubusercontent.com/nishtyak-bratok/chill-ink-tattoo-website/main/portfolio-flower.jpg" alt="Цветок - работа Алексея Renoit" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="text-white">
-                            <h4 class="text-xl font-bold mb-2">Цветок</h4>
-                            <p class="text-gray-300">Дотворк • Алексей Renoit</p>
+                            <h4 class="text-xl font-bold mb-2">Готовые работы</h4>
+                            <p class="text-gray-300">Результат нашей работы</p>
                         </div>
                     </div>
                 </div>
@@ -384,11 +406,56 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Наши мастера</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">20+ профессиональных тату-мастеров с многолетним опытом</p>
-                
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Лучшие мастера города и гостевые мастера России</p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-teal-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('dina')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/dina/master-photo.jpg', 'Дина Synthetica', 'Дина Synthetica', 'Мастер акварельной и ботанической татуировки с 8-летним опытом')">
+                            <img src="gallery/dina/master-photo.jpg" alt="Дина Synthetica" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-teal-500/80 to-cyan-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">8 лет</div>
+                                    <div class="text-xs">Акварель</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Дина</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-teal-600 font-medium text-sm mb-1">Специализация: Акварельная, Ботаническая</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 8 лет</p>
+                            <p class="text-teal-600 font-medium text-sm">🏛️ Резидент студии</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 1), 500);">
+                                    <img src="gallery/dina/dina-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 2), 500);">
+                                    <img src="gallery/dina/dina-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 3), 500);">
+                                    <img src="gallery/dina/dina-work-3.JPEG" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('dina')" class="aspect-square bg-gradient-to-br from-teal-500 to-cyan-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-teal-600 hover:to-cyan-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Дина')" class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-4 py-2 rounded-lg hover:from-teal-600 hover:to-cyan-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
                 <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-purple-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('renoit')">
                     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-orange-500"></div>
                     <div class="text-center">
@@ -404,12 +471,16 @@
                                 <i class="fas fa-search-plus text-white text-xs"></i>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold mb-1 text-gray-800">Алексей</h3>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Алексей Renoit</h3>
                         <div class="text-center mb-2">
-                            <p class="text-purple-600 font-medium text-sm mb-0.5">Специализация: Графика</p>
+                            <p class="text-purple-600 font-medium text-sm mb-0.5">Специализация: Графика, Реализм</p>
                             <p class="text-gray-600 text-sm mb-0.5">Опыт работы: 10+ лет</p>
                             <p class="text-purple-600 font-medium text-sm">🏛️ Резидент студии</p>
                         </div>
+                        <p class="text-gray-600 text-xs mb-3 leading-relaxed">
+                            Мастер графической татуировки с уникальным стилем. Специализируется на реалистичных портретах, 
+                            японской традиции и фэнтези-тематике. Работы отличаются детализацией и художественным подходом.
+                        </p>
                         
                         <!-- Works Preview -->
                         <div class="mb-3">
@@ -569,52 +640,6 @@
                             </div>
                         </div>
                         <button onclick="openBookingModal('Анастасия')" class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-red-600 transition-all duration-200 transform hover:scale-105 text-sm" style="width: calc(100px + 6px); margin: 0 auto; display: block;">
-                            Записаться
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-teal-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('dina')">
-                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-cyan-500"></div>
-                    <div class="text-center">
-                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/dina/master-photo.jpg', 'Дина Synthetica', 'Дина Synthetica', 'Мастер акварельной и ботанической татуировки с 8-летним опытом')">
-                            <img src="gallery/dina/master-photo.jpg" alt="Дина Synthetica" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-teal-500/80 to-cyan-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <div class="text-white text-center">
-                                    <div class="text-xs font-bold">8 лет</div>
-                                    <div class="text-xs">Акварель</div>
-                                </div>
-                            </div>
-                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <i class="fas fa-search-plus text-white text-xs"></i>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-1 text-gray-800">Дина</h3>
-                        <div class="text-center mb-3">
-                            <p class="text-teal-600 font-medium text-sm mb-1">Специализация: Акварельная, Ботаническая</p>
-                            <p class="text-gray-600 text-sm mb-1">Опыт работы: 8 лет</p>
-                            <p class="text-teal-600 font-medium text-sm">🏛️ Резидент студии</p>
-                        </div>
-                        
-                        <!-- Works Preview -->
-                        <div class="mb-3">
-                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
-                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 1), 500);">
-                                    <img src="gallery/dina/dina-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
-                                </div>
-                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 2), 500);">
-                                    <img src="gallery/dina/dina-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
-                                </div>
-                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('dina'); setTimeout(() => highlightWorkInGallery('dina', 3), 500);">
-                                    <img src="gallery/dina/dina-work-3.JPEG" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
-                                </div>
-                                <button onclick="event.stopPropagation(); openMasterGallery('dina')" class="aspect-square bg-gradient-to-br from-teal-500 to-cyan-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-teal-600 hover:to-cyan-600 transition-all duration-200">
-                                    <i class="fas fa-images text-sm mb-1"></i>
-                                    <span class="text-sm font-medium">Показать больше</span>
-                                </button>
-                            </div>
-                        </div>
-                        <button onclick="openBookingModal('Дина')" class="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-4 py-2 rounded-lg hover:from-teal-600 hover:to-cyan-600 transition-all duration-200 transform hover:scale-105 text-sm">
                             Записаться
                         </button>
                     </div>
@@ -851,6 +876,241 @@
                         </button>
                     </div>
                 </div>
+                
+                <!-- Sergei -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-stone-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('sergei')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-500 to-gray-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/sergei/master-photo.jpg', 'Сергей', 'Сергей', 'Мастер татуировки с 10+ летним опытом')">
+                            <img src="gallery/sergei/master-photo.jpg" alt="Сергей" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-500/80 to-gray-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Татуировки</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Сергей</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-stone-600 font-medium text-sm mb-1">Специализация: Татуировки</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт: 10+ лет</p>
+                            <p class="text-stone-600 font-medium text-sm">Постоянный мастер</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('sergei'); setTimeout(() => highlightWorkInGallery('sergei', 1), 500);">
+                                    <img src="gallery/sergei/sergei-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('sergei'); setTimeout(() => highlightWorkInGallery('sergei', 2), 500);">
+                                    <img src="gallery/sergei/sergei-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('sergei'); setTimeout(() => highlightWorkInGallery('sergei', 3), 500);">
+                                    <img src="gallery/sergei/sergei-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('sergei')" class="aspect-square bg-gradient-to-br from-stone-500 to-gray-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-stone-600 hover:to-gray-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Сергей')" class="w-full bg-gradient-to-r from-stone-500 to-gray-500 text-white px-4 py-2 rounded-lg hover:from-stone-600 hover:to-gray-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Nes -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-sky-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('nes')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-500 to-blue-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/nes/master-photo.jpg', 'Нияз', 'Нияз', 'Мастер орнамента и авторского стиля с 10+ летним опытом')">
+                            <img src="gallery/nes/master-photo.jpg" alt="Нияз" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-sky-500/80 to-blue-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">10+ лет</div>
+                                    <div class="text-xs">Орнаменты</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Нияз</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-sky-600 font-medium text-sm mb-1">Специализация: Орнаменты, Авторский стиль</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт: 10+ лет</p>
+                            <p class="text-sky-600 font-medium text-sm">Постоянный мастер</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('nes'); setTimeout(() => highlightWorkInGallery('nes', 1), 500);">
+                                    <img src="gallery/nes/nes-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('nes'); setTimeout(() => highlightWorkInGallery('nes', 2), 500);">
+                                    <img src="gallery/nes/nes-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('nes'); setTimeout(() => highlightWorkInGallery('nes', 3), 500);">
+                                    <img src="gallery/nes/nes-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('nes')" class="aspect-square bg-gradient-to-br from-sky-500 to-blue-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-sky-600 hover:to-blue-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Нияз')" class="w-full bg-gradient-to-r from-sky-500 to-blue-500 text-white px-4 py-2 rounded-lg hover:from-sky-600 hover:to-blue-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chernozzem -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-lime-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('chernozzem')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-lime-500 to-green-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/chernozzem/master-photo.jpg', 'Чернозём', 'Чернозём', 'Мастер реализма с 8+ летним опытом')">
+                            <img src="gallery/chernozzem/master-photo.jpg" alt="Чернозём" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-lime-500/80 to-green-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">8+ лет</div>
+                                    <div class="text-xs">Реализм</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Чернозём</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-lime-600 font-medium text-sm mb-1">Специализация: Реализм</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт: 8+ лет</p>
+                            <p class="text-lime-600 font-medium text-sm">Постоянный мастер</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('chernozzem'); setTimeout(() => highlightWorkInGallery('chernozzem', 1), 500);">
+                                    <img src="gallery/chernozzem/chernozzem-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('chernozzem'); setTimeout(() => highlightWorkInGallery('chernozzem', 2), 500);">
+                                    <img src="gallery/chernozzem/chernozzem-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('chernozzem'); setTimeout(() => highlightWorkInGallery('chernozzem', 3), 500);">
+                                    <img src="gallery/chernozzem/chernozzem-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('chernozzem')" class="aspect-square bg-gradient-to-br from-lime-500 to-green-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-lime-600 hover:to-green-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Чернозём')" class="w-full bg-gradient-to-r from-lime-500 to-green-500 text-white px-4 py-2 rounded-lg hover:from-lime-600 hover:to-green-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Artur -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-slate-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('artur')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-500 to-gray-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/artur/master-photo.jpg', 'Артур', 'Артур', 'Мастер графической татуировки с 7+ летним опытом')">
+                            <img src="gallery/artur/master-photo.jpg" alt="Артур" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-500/80 to-gray-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">7+ лет</div>
+                                    <div class="text-xs">Графика</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Артур</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-slate-600 font-medium text-sm mb-1">Специализация: Графическая татуировка</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт: 7+ лет</p>
+                            <p class="text-slate-600 font-medium text-sm">Постоянный мастер</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('artur'); setTimeout(() => highlightWorkInGallery('artur', 1), 500);">
+                                    <img src="gallery/artur/artur-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('artur'); setTimeout(() => highlightWorkInGallery('artur', 2), 500);">
+                                    <img src="gallery/artur/artur-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('artur'); setTimeout(() => highlightWorkInGallery('artur', 3), 500);">
+                                    <img src="gallery/artur/artur-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('artur')" class="aspect-square bg-gradient-to-br from-slate-500 to-gray-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-slate-600 hover:to-gray-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Артур')" class="w-full bg-gradient-to-r from-slate-500 to-gray-500 text-white px-4 py-2 rounded-lg hover:from-slate-600 hover:to-gray-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Soda -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-fuchsia-500 relative overflow-hidden cursor-pointer" onclick="openMasterGallery('soda')">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-fuchsia-500 to-pink-500"></div>
+                    <div class="text-center">
+                        <div class="relative w-20 h-20 mx-auto mb-2 rounded-full overflow-hidden border-2 border-white shadow-lg cursor-pointer" onclick="event.stopPropagation(); openLightbox('gallery/soda/master-photo.jpg', 'Сода', 'Сода', 'Мастер акварельной татуировки с 6+ летним опытом')">
+                            <img src="gallery/soda/master-photo.jpg" alt="Сода" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-fuchsia-500/80 to-pink-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-xs font-bold">6+ лет</div>
+                                    <div class="text-xs">Акварель</div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="fas fa-search-plus text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">Сода</h3>
+                        <div class="text-center mb-3">
+                            <p class="text-fuchsia-600 font-medium text-sm mb-1">Специализация: Акварельная татуировка</p>
+                            <p class="text-gray-600 text-sm mb-1">Опыт: 6+ лет</p>
+                            <p class="text-fuchsia-600 font-medium text-sm">Постоянный мастер</p>
+                        </div>
+                        
+                        <!-- Works Preview -->
+                        <div class="mb-3">
+                            <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('soda'); setTimeout(() => highlightWorkInGallery('soda', 1), 500);">
+                                    <img src="gallery/soda/soda-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('soda'); setTimeout(() => highlightWorkInGallery('soda', 2), 500);">
+                                    <img src="gallery/soda/soda-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('soda'); setTimeout(() => highlightWorkInGallery('soda', 3), 500);">
+                                    <img src="gallery/soda/soda-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                </div>
+                                <button onclick="event.stopPropagation(); openMasterGallery('soda')" class="aspect-square bg-gradient-to-br from-fuchsia-500 to-pink-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-fuchsia-600 hover:to-pink-600 transition-all duration-200">
+                                    <i class="fas fa-images text-sm mb-1"></i>
+                                    <span class="text-sm font-medium">Показать больше</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('Сода')" class="w-full bg-gradient-to-r from-fuchsia-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-fuchsia-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105 text-sm">
+                            Записаться
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -867,21 +1127,41 @@
                 <div class="space-y-8">
                     <div class="flex items-center space-x-4">
                         <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-envelope text-white"></i>
+                            <i class="fas fa-phone text-white"></i>
                         </div>
                         <div>
-                            <h4 class="text-xl font-bold mb-1">Email</h4>
-                            <p class="text-gray-300">chillink.kzn@gmail.com</p>
+                            <h4 class="text-xl font-bold mb-1">Телефон</h4>
+                            <p class="text-gray-300">8-9178-78-46-75</p>
                         </div>
                     </div>
                     
                     <div class="flex items-center space-x-4">
                         <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-phone text-white"></i>
+                            <i class="fab fa-telegram text-white"></i>
                         </div>
                         <div>
-                            <h4 class="text-xl font-bold mb-1">Телефон</h4>
-                            <p class="text-gray-300">+7 (939) 383-08-71</p>
+                            <h4 class="text-xl font-bold mb-1">Telegram</h4>
+                            <p class="text-gray-300">@chillinktattoos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fab fa-instagram text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-1">Instagram</h4>
+                            <p class="text-gray-300">@chill_ink_studio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-envelope text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-1">Email</h4>
+                            <p class="text-gray-300">chillink.kzn@gmail.com</p>
                         </div>
                     </div>
                     
@@ -923,6 +1203,55 @@
                     </form>
                 </div>
             </div>
+            
+            <!-- Location and Maps -->
+            <div class="mt-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Наше местоположение</h3>
+                    <p class="text-gray-300">Улица Айвазовского, 104 офис; 1 этаж, Вахитовский район, Казань</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Map placeholder -->
+                    <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl">
+                        <div class="aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
+                            <div class="text-center text-gray-400">
+                                <i class="fas fa-map-marker-alt text-4xl mb-4"></i>
+                                <p>Интерактивная карта</p>
+                                <p class="text-sm">Улица Айвазовского, 104</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map links -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold text-white mb-4">Как нас найти</h4>
+                        <div class="space-y-3">
+                            <a href="https://yandex.ru/maps/-/CCUeQOZcGD" target="_blank" class="flex items-center space-x-3 p-4 bg-white/10 backdrop-blur-md rounded-lg hover:bg-white/20 transition-colors">
+                                <i class="fab fa-yandex text-2xl text-yellow-500"></i>
+                                <div>
+                                    <p class="font-semibold text-white">Яндекс.Карты</p>
+                                    <p class="text-gray-300 text-sm">Открыть в Яндекс.Картах</p>
+                                </div>
+                            </a>
+                            
+                            <a href="https://goo.gl/maps/example" target="_blank" class="flex items-center space-x-3 p-4 bg-white/10 backdrop-blur-md rounded-lg hover:bg-white/20 transition-colors">
+                                <i class="fab fa-google text-2xl text-blue-500"></i>
+                                <div>
+                                    <p class="font-semibold text-white">Google Maps</p>
+                                    <p class="text-gray-300 text-sm">Открыть в Google Maps</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-gradient-to-r from-purple-500/20 to-orange-500/20 rounded-lg border border-purple-500/30">
+                            <h5 class="font-semibold text-white mb-2">Часы работы:</h5>
+                            <p class="text-gray-300 text-sm">Пн-Вс: 10:00 - 22:00</p>
+                            <p class="text-gray-300 text-sm">Без выходных</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -953,7 +1282,7 @@
                             </div>
                             <div class="relative">
                                 <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=500&h=400&fit=crop&crop=center" 
-                                     alt="Татуировка на плече" 
+                                     alt="Процесс нанесения татуировки" 
                                      class="w-full h-64 object-cover rounded-xl shadow-2xl">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                             </div>
@@ -1061,6 +1390,69 @@
                                      class="w-full h-64 object-cover rounded-xl shadow-2xl">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-20 bg-white text-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-purple-orange">Наше местоположение</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Мы находимся в центре Казани</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">Как нас найти</h3>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Наша студия расположена в удобном месте в центре Казани. 
+                        Мы работаем ежедневно с 10:00 до 20:00.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-1">Адрес</h4>
+                                <p class="text-gray-600">Айвазовского 10/54, Казань</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-clock text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-1">Часы работы</h4>
+                                <p class="text-gray-600">Ежедневно с 10:00 до 20:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <a href="https://yandex.ru/maps/org/chill_ink_tattoo_studio/77465297794/" target="_blank" class="bg-gradient-to-r from-purple-600 to-orange-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 text-center">
+                            <i class="fas fa-map-marked-alt mr-2"></i>
+                            Мы на Яндекс.Картах
+                        </a>
+                        <a href="https://2gis.ru/kazan/firm/70000001035335874" target="_blank" class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 text-center">
+                            <i class="fas fa-map mr-2"></i>
+                            Мы на 2ГИС
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="w-full h-96 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl flex items-center justify-center">
+                        <div class="text-center text-gray-600">
+                            <i class="fas fa-map-marked-alt text-6xl mb-4"></i>
+                            <p class="text-lg font-semibold">Интерактивная карта</p>
+                            <p class="text-sm">Нажмите на ссылки выше для просмотра</p>
                         </div>
                     </div>
                 </div>
@@ -2629,6 +3021,95 @@ Email: ${clientEmail || 'Не указан'}
         
         // Use passive event listener for better performance
         window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // Portfolio Slider
+        let currentSlideIndex = 0;
+        const portfolioImages = [
+            // Dina works
+            { src: 'gallery/dina/dina-work-1.jpg', alt: 'Работа Дины', title: 'Работа Дины', style: 'Дина' },
+            { src: 'gallery/dina/dina-work-2.jpg', alt: 'Работа Дины', title: 'Работа Дины', style: 'Дина' },
+            { src: 'gallery/dina/dina-work-3.jpg', alt: 'Работа Дины', title: 'Работа Дины', style: 'Дина' },
+            // Renoit works
+            { src: 'gallery/renoit/renoit-work-1.jpg', alt: 'Работа Алексея Renoit', title: 'Работа Алексея', style: 'Алексей Renoit' },
+            { src: 'gallery/renoit/renoit-work-2.jpg', alt: 'Работа Алексея Renoit', title: 'Работа Алексея', style: 'Алексей Renoit' },
+            { src: 'gallery/renoit/renoit-work-3.jpg', alt: 'Работа Алексея Renoit', title: 'Работа Алексея', style: 'Алексей Renoit' },
+            // Atlasov works
+            { src: 'gallery/atlasov/atlasov-work-1.jpg', alt: 'Работа Атласова', title: 'Работа Атласова', style: 'Атласов' },
+            { src: 'gallery/atlasov/atlasov-work-2.jpg', alt: 'Работа Атласова', title: 'Работа Атласова', style: 'Атласов' },
+            { src: 'gallery/atlasov/atlasov-work-3.jpg', alt: 'Работа Атласова', title: 'Работа Атласова', style: 'Атласов' },
+            // Artur works
+            { src: 'gallery/artur/artur-work-1.jpg', alt: 'Работа Артура', title: 'Работа Артура', style: 'Артур' },
+            { src: 'gallery/artur/artur-work-2.jpg', alt: 'Работа Артура', title: 'Работа Артура', style: 'Артур' },
+            { src: 'gallery/artur/artur-work-3.jpg', alt: 'Работа Артура', title: 'Работа Артура', style: 'Артур' },
+            // Julia works
+            { src: 'gallery/julia/julia-work-1.jpg', alt: 'Работа Юлии', title: 'Работа Юлии', style: 'Юлия' },
+            { src: 'gallery/julia/julia-work-2.jpg', alt: 'Работа Юлии', title: 'Работа Юлии', style: 'Юлия' },
+            { src: 'gallery/julia/julia-work-3.jpg', alt: 'Работа Юлии', title: 'Работа Юлии', style: 'Юлия' },
+            // Rocket works
+            { src: 'gallery/rocket/rocket-work-1.jpg', alt: 'Работа Rocket', title: 'Работа Rocket', style: 'Rocket' },
+            { src: 'gallery/rocket/rocket-work-2.jpg', alt: 'Работа Rocket', title: 'Работа Rocket', style: 'Rocket' },
+            { src: 'gallery/rocket/rocket-work-3.jpg', alt: 'Работа Rocket', title: 'Работа Rocket', style: 'Rocket' },
+            // Sergei works
+            { src: 'gallery/sergei/sergei-work-1.jpg', alt: 'Работа Сергея', title: 'Работа Сергея', style: 'Сергей' },
+            { src: 'gallery/sergei/sergei-work-2.jpg', alt: 'Работа Сергея', title: 'Работа Сергея', style: 'Сергей' },
+            { src: 'gallery/sergei/sergei-work-3.jpg', alt: 'Работа Сергея', title: 'Работа Сергея', style: 'Сергей' },
+            // Soda works
+            { src: 'gallery/soda/soda-work-1.jpg', alt: 'Работа Соды', title: 'Работа Соды', style: 'Сода' },
+            { src: 'gallery/soda/soda-work-2.jpg', alt: 'Работа Соды', title: 'Работа Соды', style: 'Сода' },
+            { src: 'gallery/soda/soda-work-3.jpg', alt: 'Работа Соды', title: 'Работа Соды', style: 'Сода' }
+        ];
+
+        function generatePortfolioSlides() {
+            const container = document.getElementById('slider-container');
+            if (!container) return;
+
+            // Shuffle array for random order
+            const shuffledImages = [...portfolioImages].sort(() => Math.random() - 0.5);
+            
+            container.innerHTML = shuffledImages.map((image, index) => `
+                <div class="w-full flex-shrink-0">
+                    <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        <img src="${image.src}" alt="${image.alt}" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300" style="aspect-ratio: 1;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="text-white">
+                                <h4 class="text-xl font-bold mb-2">${image.title}</h4>
+                                <p class="text-gray-300">${image.style}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function currentSlide(n) {
+            const container = document.getElementById('slider-container');
+            if (!container) return;
+
+            currentSlideIndex = n - 1;
+            const translateX = -currentSlideIndex * 100;
+            container.style.transform = `translateX(${translateX}%)`;
+
+            // Update dots
+            const dots = document.querySelectorAll('#portfolio-slider + div button');
+            dots.forEach((dot, index) => {
+                if (index === currentSlideIndex) {
+                    dot.className = 'w-3 h-3 rounded-full bg-purple-500 transition-all duration-300';
+                } else {
+                    dot.className = 'w-3 h-3 rounded-full bg-gray-300 transition-all duration-300';
+                }
+            });
+        }
+
+        function autoSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % 6;
+            currentSlide(currentSlideIndex + 1);
+        }
+
+        // Initialize portfolio slider
+        document.addEventListener('DOMContentLoaded', function() {
+            generatePortfolioSlides();
+            setInterval(autoSlide, 3000); // Change slide every 3 seconds
+        });
     </script>
 
     <!-- Master Gallery Modals -->
@@ -3252,26 +3733,26 @@ Email: ${clientEmail || 'Не указан'}
                     
                     <!-- Client Name and Phone in one row -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-700 mb-1">Ваше имя *</label>
-                            <input type="text" id="client-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="name">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">Ваше имя *</label>
+                        <input type="text" id="client-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm font-inter" style="pointer-events: auto; user-select: text;" autocomplete="name">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-gray-700 mb-1">Телефон *</label>
-                            <input type="tel" id="client-phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="tel">
+                            <input type="tel" id="client-phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm font-inter" style="pointer-events: auto; user-select: text;" autocomplete="tel">
                         </div>
                     </div>
                     
                     <!-- Email -->
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="client-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="email">
+                        <input type="email" id="client-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors text-sm font-inter" style="pointer-events: auto; user-select: text;" autocomplete="email">
                     </div>
                     
                     <!-- Tattoo Description -->
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">Описание желаемой татуировки *</label>
-                        <textarea id="tattoo-description" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors resize-none text-sm" placeholder="Опишите ваши пожелания, размер, место на теле, стиль..." style="pointer-events: auto; user-select: text;"></textarea>
+                        <textarea id="tattoo-description" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition-colors resize-none text-sm font-inter" placeholder="Опишите ваши пожелания, размер, место на теле, стиль..." style="pointer-events: auto; user-select: text;"></textarea>
                     </div>
                     
                     <!-- File Upload -->
@@ -3334,24 +3815,24 @@ Email: ${clientEmail || 'Не указан'}
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label class="block text-xs font-medium text-gray-700 mb-1">Ваше имя *</label>
-                            <input type="text" id="waiting-client-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="name">
+                            <input type="text" id="waiting-client-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm font-inter" style="pointer-events: auto; user-select: text;" autocomplete="name">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-gray-700 mb-1">Телефон *</label>
-                            <input type="tel" id="waiting-client-phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="tel">
+                            <input type="tel" id="waiting-client-phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm font-inter" style="pointer-events: auto; user-select: text;" autocomplete="tel">
                         </div>
                     </div>
                     
                     <!-- Email -->
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="waiting-client-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm" style="pointer-events: auto; user-select: text;" autocomplete="email">
+                        <input type="email" id="waiting-client-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors text-sm font-inter" style="pointer-events: auto; user-select: text;" autocomplete="email">
                     </div>
                     
                     <!-- Tattoo Description -->
                     <div>
                         <label class="block text-xs font-medium text-gray-700 mb-1">Описание желаемой татуировки *</label>
-                        <textarea id="waiting-tattoo-description" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors resize-none text-sm" placeholder="Опишите ваши пожелания, размер, место на теле, стиль..." style="pointer-events: auto; user-select: text;"></textarea>
+                        <textarea id="waiting-tattoo-description" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition-colors resize-none text-sm font-inter" placeholder="Опишите ваши пожелания, размер, место на теле, стиль..." style="pointer-events: auto; user-select: text;"></textarea>
                     </div>
                     
                     <!-- File Upload -->
