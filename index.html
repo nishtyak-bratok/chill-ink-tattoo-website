@@ -1256,7 +1256,7 @@
                 currentIndex: 0
             },
             aleksands: {
-                totalWorks: 34,
+                totalWorks: 17,
                 currentIndex: 0
             }
         };
@@ -1723,10 +1723,10 @@
             },
             aleksands: {
                 name: 'Александр С.',
-                works: 34, // 34 работы + 1 аватар
+                works: 17, // 17 работ + 1 аватар
                 worksPerPage: 9,
                 style: 'Художественная татуировка',
-                works: Array.from({length: 34}, (_, i) => i + 1)
+                works: Array.from({length: 17}, (_, i) => i + 1)
                     .map((id, index) => ({
                         id: id,
                         src: `gallery/aleksands/aleksands-work-${id}.jpg`,
@@ -3533,10 +3533,10 @@ Email: ${clientEmail || 'Не указан'}
                             <span id="aleksands-total-pages" class="font-bold text-gray-600">1</span>
                         </div>
                         <div class="flex gap-2">
-                            <button onclick="prevGalleryPage('aleksands')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm transition-colors">
+                            <button onclick="previousPage('aleksands')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm transition-colors">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
-                            <button onclick="nextGalleryPage('aleksands')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm transition-colors">
+                            <button onclick="nextPage('aleksands')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm transition-colors">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
