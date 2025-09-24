@@ -1,0 +1,27 @@
+# Установка кодировки Windows-1251 для HTML файлов
+AddDefaultCharset windows-1251
+
+# Установка кодировки для конкретных типов файлов
+<FilesMatch "\.(html|htm)$">
+    Header set Content-Type "text/html; charset=windows-1251"
+</FilesMatch>
+
+<FilesMatch "\.css$">
+    Header set Content-Type "text/css; charset=windows-1251"
+</FilesMatch>
+
+<FilesMatch "\.js$">
+    Header set Content-Type "application/javascript; charset=windows-1251"
+</FilesMatch>
+
+# Включение модуля mod_headers если он доступен
+<IfModule mod_headers.c>
+    Header always set Content-Type "text/html; charset=windows-1251"
+</IfModule>
+
+# Альтернативный способ для старых серверов
+<IfModule mod_mime.c>
+    AddType text/html;charset=windows-1251 .html .htm
+    AddType text/css;charset=windows-1251 .css
+    AddType application/javascript;charset=windows-1251 .js
+</IfModule>
