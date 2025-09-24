@@ -8,6 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Preload critical resources for better performance -->
+    <link rel="preload" href="gallery/renoit/renoit-work-1.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="gallery/rocket/rocket-work-1.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="logo.png" as="image">
     <link rel="stylesheet" href="styles.css">
     <script>
         tailwind.config = {
@@ -45,6 +50,33 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        /* Performance optimizations */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Optimize image rendering */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            will-change: transform;
+        }
+        
+        /* Optimize animations */
+        .transition-opacity {
+            will-change: opacity;
+        }
+        
+        /* Optimize scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Optimize transforms */
+        .hover\\:scale-105:hover {
+            will-change: transform;
         }
         
         /* Optimize image loading and transitions */
@@ -383,13 +415,13 @@
                         <div class="mb-3">
                             <div class="grid grid-cols-2 gap-2 mb-2" style="max-width: 240px; margin: 0 auto;">
                                 <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('renoit'); setTimeout(() => highlightWorkInGallery('renoit', 1), 500);">
-                                    <img src="gallery/renoit/renoit-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy">
+                                    <img src="gallery/renoit/renoit-work-1.jpg" alt="Работа 1" class="w-full h-full object-cover" loading="lazy" fetchpriority="high" decoding="async">
                                 </div>
                                 <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('renoit'); setTimeout(() => highlightWorkInGallery('renoit', 2), 500);">
-                                    <img src="gallery/renoit/renoit-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy">
+                                    <img src="gallery/renoit/renoit-work-2.jpg" alt="Работа 2" class="w-full h-full object-cover" loading="lazy" decoding="async">
                                 </div>
                                 <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="event.stopPropagation(); openMasterGallery('renoit'); setTimeout(() => highlightWorkInGallery('renoit', 3), 500);">
-                                    <img src="gallery/renoit/renoit-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy">
+                                    <img src="gallery/renoit/renoit-work-3.jpg" alt="Работа 3" class="w-full h-full object-cover" loading="lazy" decoding="async">
                                 </div>
                                 <button onclick="event.stopPropagation(); openMasterGallery('renoit')" class="aspect-square bg-gradient-to-br from-purple-500 to-orange-500 text-white rounded-lg flex flex-col items-center justify-center hover:from-purple-600 hover:to-orange-600 transition-all duration-200">
                                     <i class="fas fa-images text-sm mb-1"></i>
@@ -1240,97 +1272,125 @@
         }
 
         // Function to update single position on all master cards (optimized for speed)
+        // Cache for DOM elements to avoid repeated queries
+        const cardCache = new Map();
+        
         function updateSinglePositionOnAllCards(position) {
-            console.log(`=== UPDATING POSITION ${position} ON ALL CARDS ===`);
-            
-            // Collect all updates first
-            const updates = [];
-            
-            Object.keys(masterWorksRotation).forEach(masterId => {
-                const workId = getWorkForPosition(masterId, position);
-                if (!workId) {
-                    console.log(`No work found for master ${masterId}, position ${position}`);
-                    return;
-                }
+            // Use requestAnimationFrame for smoother updates
+            requestAnimationFrame(() => {
+                console.log(`=== UPDATING POSITION ${position} ON ALL CARDS ===`);
                 
-                // Find the specific master card
-                const cards = document.querySelectorAll('[onclick*="openMasterGallery"]');
-                let targetCard = null;
+                // Collect all updates first
+                const updates = [];
                 
-                for (let card of cards) {
-                    const onclick = card.getAttribute('onclick');
-                    if (onclick && onclick.includes(`openMasterGallery('${masterId}')`)) {
-                        targetCard = card;
-                        break;
+                Object.keys(masterWorksRotation).forEach(masterId => {
+                    const workId = getWorkForPosition(masterId, position);
+                    if (!workId) return;
+                    
+                    // Use cached card or find and cache it
+                    let targetCard = cardCache.get(masterId);
+                    if (!targetCard) {
+                        const cards = document.querySelectorAll('[onclick*="openMasterGallery"]');
+                        for (let card of cards) {
+                            const onclick = card.getAttribute('onclick');
+                            if (onclick && onclick.includes(`openMasterGallery('${masterId}')`)) {
+                                targetCard = card;
+                                cardCache.set(masterId, targetCard);
+                                break;
+                            }
+                        }
                     }
-                }
+                    
+                    if (!targetCard) return;
+                    
+                    const worksContainer = targetCard.querySelector('.grid.grid-cols-2.gap-2');
+                    if (!worksContainer) return;
+                    
+                    const workDiv = worksContainer.children[position];
+                    if (!workDiv || workDiv.tagName !== 'DIV') return;
+                    
+                    const img = workDiv.querySelector('img');
+                    if (!img) return;
+                    
+                    // Determine file extension based on master (optimized)
+                    let extension = '.jpg';
+                    if (masterId === 'dina') {
+                        extension = workId <= 2 ? '.jpg' : '.JPEG';
+                    } else if (masterId === 'barabanov') {
+                        const extensions = ['.JPG', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG'];
+                        extension = extensions[workId - 1] || '.jpg';
+                    } else if (masterId === 'flo') {
+                        const extensions = ['.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.JPG', '.JPG', '.JPG'];
+                        extension = extensions[workId - 1] || '.jpg';
+                    }
+                    
+                    const newSrc = getThumbnailUrl(masterId, workId, extension, 200, 200);
+                    
+                    // Only update if source is different
+                    if (img.src !== newSrc) {
+                        updates.push({
+                            masterId,
+                            workId,
+                            img,
+                            workDiv,
+                            newSrc,
+                            position
+                        });
+                    }
+                });
                 
-                if (!targetCard) {
-                    console.log(`Card not found for master ${masterId}`);
-                    return;
-                }
+                console.log(`Found ${updates.length} cards to update for position ${position}`);
                 
-                const worksContainer = targetCard.querySelector('.grid.grid-cols-2.gap-2');
-                if (!worksContainer) return;
-                
-                const workDiv = worksContainer.children[position];
-                if (!workDiv || workDiv.tagName !== 'DIV') return;
-                
-                const img = workDiv.querySelector('img');
-                if (!img) return;
-                
-                // Determine file extension based on master
-                let extension = '.jpg';
-                if (masterId === 'dina') {
-                    const extensions = ['.jpg', '.jpg', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG', '.JPEG'];
-                    extension = extensions[workId - 1] || '.jpg';
-                } else if (masterId === 'barabanov') {
-                    const extensions = ['.JPG', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.jpg', '.jpg', '.JPG'];
-                    extension = extensions[workId - 1] || '.jpg';
-                } else if (masterId === 'flo') {
-                    const extensions = ['.JPG', '.JPG', '.jpg', '.jpg', '.JPG', '.JPG', '.JPG', '.jpg', '.JPG', '.jpg', '.JPG', '.JPG', '.JPG', '.JPG', '.JPG'];
-                    extension = extensions[workId - 1] || '.jpg';
-                }
-                
-                const newSrc = getThumbnailUrl(masterId, workId, extension, 200, 200);
-                
-                updates.push({
-                    masterId,
-                    workId,
-                    img,
-                    workDiv,
-                    newSrc,
-                    position
+                // Apply all updates simultaneously with optimized transitions
+                updates.forEach(({ masterId, workId, img, workDiv, newSrc, position }) => {
+                    // Add smooth transition
+                    img.style.transition = 'opacity 0.15s ease';
+                    img.style.opacity = '0.7';
+                    
+                    // Use direct assignment for faster updates
+                    img.src = newSrc;
+                    img.alt = `Работа ${workId}`;
+                    
+                    // Update onclick event
+                    workDiv.onclick = (e) => {
+                        e.stopPropagation();
+                        openMasterGallery(masterId);
+                        setTimeout(() => {
+                            highlightWorkInGallery(masterId, workId);
+                        }, 500);
+                    };
+                    
+                    // Restore opacity after image loads
+                    img.onload = () => {
+                        img.style.opacity = '1';
+                    };
+                    
+                    console.log(`Updated master ${masterId}, position ${position} to work ${workId}`);
                 });
             });
-            
-            console.log(`Found ${updates.length} cards to update for position ${position}`);
-            
-            // Apply all updates simultaneously
-            updates.forEach(({ masterId, workId, img, workDiv, newSrc, position }) => {
-                // Add loading class for smooth transition
-                img.classList.add('opacity-50');
+        }
+
+        // Optimize all images for better performance
+        function optimizeImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach((img, index) => {
+                // Add decoding="async" for better performance
+                if (!img.hasAttribute('decoding')) {
+                    img.setAttribute('decoding', 'async');
+                }
                 
-                // Use direct assignment for faster updates (no preloading for thumbnails)
-                img.src = newSrc;
-                img.alt = `Работа ${workId}`;
+                // Add fetchpriority for first few images
+                if (index < 6 && !img.hasAttribute('fetchpriority')) {
+                    img.setAttribute('fetchpriority', 'high');
+                }
                 
-                // Update onclick event
-                workDiv.onclick = (e) => {
-                    e.stopPropagation();
-                    openMasterGallery(masterId);
-                    setTimeout(() => {
-                        highlightWorkInGallery(masterId, workId);
-                    }, 500);
-                };
-                
-                // Remove loading class after a short delay for visual effect
-                setTimeout(() => {
-                    img.classList.remove('opacity-50');
-                }, 200);
-                
-                console.log(`Updated master ${masterId}, position ${position} to work ${workId}`);
+                // Ensure lazy loading for images below the fold
+                if (index > 5 && !img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
             });
+            
+            console.log(`Optimized ${images.length} images for better performance`);
         }
 
         // Function to start global rotation
@@ -2437,11 +2497,25 @@ Email: ${clientEmail || 'Не указан'}
             }, 1000); // Reduced delay since we don't need the immediate update
         }
 
-        // Initialize everything when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        // Optimized initialization with performance monitoring
+        function initializeWithPerformanceMonitoring() {
+            const startTime = performance.now();
             console.log('DOMContentLoaded event fired');
-            initializeRotation();
-        });
+            
+            // Optimize images first
+            optimizeImages();
+            
+            // Initialize rotation with delay to ensure DOM is ready
+            requestAnimationFrame(() => {
+                initializeRotation();
+                
+                const endTime = performance.now();
+                console.log(`Initialization completed in ${(endTime - startTime).toFixed(2)}ms`);
+            });
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', initializeWithPerformanceMonitoring);
 
         // Fallback initialization if DOMContentLoaded already fired
         if (document.readyState === 'loading') {
@@ -2471,15 +2545,25 @@ Email: ${clientEmail || 'Не указан'}
             }
         });
 
-        // Pause rotation when user scrolls (performance optimization)
+        // Optimized scroll handler with debouncing
         let scrollTimeout;
-        window.addEventListener('scroll', function() {
-            stopGlobalRotation();
+        let isScrolling = false;
+        
+        function handleScroll() {
+            if (!isScrolling) {
+                stopGlobalRotation();
+                isScrolling = true;
+            }
+            
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
+                isScrolling = false;
                 startGlobalRotation();
-            }, 2000); // Resume rotation 2 seconds after scrolling stops
-        });
+            }, 1500); // Reduced delay for better UX
+        }
+        
+        // Use passive event listener for better performance
+        window.addEventListener('scroll', handleScroll, { passive: true });
     </script>
 
     <!-- Master Gallery Modals -->
@@ -3333,211 +3417,5 @@ Email: ${clientEmail || 'Не указан'}
         }
     </script>
 
-    <!-- Works Rotation Script -->
-    <script>
-        // Global rotation state
-        let globalRotationState = {
-            currentWorkIndex: 0, // 0, 1, or 2 (which position to update)
-            currentRotationCycle: 0,
-            rotationInterval: null
-        };
-
-        // Master works rotation data
-        const masterWorksRotation = {
-            renoit: { currentIndex: 3, totalWorks: 40 },
-            rocket: { currentIndex: 3, totalWorks: 8 },
-            lozhkin: { currentIndex: 3, totalWorks: 14 },
-            nastasia: { currentIndex: 3, totalWorks: 9 },
-            dina: { currentIndex: 3, totalWorks: 10 },
-            barabanov: { currentIndex: 3, totalWorks: 15 },
-            flo: { currentIndex: 3, totalWorks: 15 },
-            atlasov: { currentIndex: 3, totalWorks: 43 },
-            leyla: { currentIndex: 3, totalWorks: 10 }
-        };
-
-        // Master data configuration
-        const masterData = {
-            renoit: { works: 40, extensions: ['jpg', 'jpg', 'jpg'] },
-            rocket: { works: 8, extensions: ['jpg', 'jpg', 'jpg'] },
-            lozhkin: { works: 14, extensions: ['jpg', 'jpg', 'jpg'] },
-            nastasia: { works: 9, extensions: ['jpg', 'jpg', 'jpg'] },
-            dina: { works: 10, extensions: ['jpg', 'jpg', 'JPEG'] },
-            barabanov: { works: 15, extensions: ['JPG', 'JPG', 'JPG'] },
-            flo: { works: 15, extensions: ['JPG', 'JPG', 'jpg'] },
-            atlasov: { works: 43, extensions: ['jpg', 'jpg', 'jpg'] },
-            leyla: { works: 10, extensions: ['jpg', 'jpg', 'jpg'] }
-        };
-
-        // Get work for specific position
-        function getWorkForPosition(masterId, position) {
-            const master = masterWorksRotation[masterId];
-            if (!master) return 1;
-            
-            let workIndex = ((master.currentIndex + position) % master.totalWorks) + 1;
-            
-            // Skip work 7 for rocket master
-            if (masterId === 'rocket' && workIndex === 7) {
-                workIndex = 8;
-            }
-            
-            return workIndex;
-        }
-
-        // Get current 3 works for master
-        function getCurrentWorks(masterId) {
-            return [
-                getWorkForPosition(masterId, 0),
-                getWorkForPosition(masterId, 1),
-                getWorkForPosition(masterId, 2)
-            ];
-        }
-
-        // Update single position on all cards
-        function updateSinglePositionOnAllCards(position) {
-            console.log(`Обновление позиции ${position} на всех карточках`);
-            
-            Object.keys(masterWorksRotation).forEach(masterId => {
-                const workIndex = getWorkForPosition(masterId, position);
-                const master = masterData[masterId];
-                const extension = master.extensions[position] || 'jpg';
-                const newSrc = `gallery/${masterId}/${masterId}-work-${workIndex}.${extension}`;
-                
-                // Find the master card
-                const masterCard = document.querySelector(`[onclick*="openMasterGallery('${masterId}')"]`);
-                if (masterCard) {
-                    const workImages = masterCard.querySelectorAll('.aspect-square img');
-                    if (workImages[position]) {
-                        // Add opacity effect
-                        workImages[position].classList.add('opacity-50');
-                        
-                        // Update image
-                        workImages[position].src = newSrc;
-                        
-                        // Remove opacity after a short delay
-                        setTimeout(() => {
-                            workImages[position].classList.remove('opacity-50');
-                        }, 150);
-                        
-                        console.log(`Обновлена карточка ${masterId}, позиция ${position}, работа ${workIndex}`);
-                    }
-                }
-            });
-        }
-
-        // Start global rotation
-        function startGlobalRotation() {
-            if (globalRotationState.rotationInterval) {
-                clearInterval(globalRotationState.rotationInterval);
-            }
-            
-            console.log('Запуск глобальной ротации работ');
-            
-            globalRotationState.rotationInterval = setInterval(() => {
-                console.log(`Цикл ротации: ${globalRotationState.currentRotationCycle}, позиция: ${globalRotationState.currentWorkIndex}`);
-                
-                // Update current position
-                updateSinglePositionOnAllCards(globalRotationState.currentWorkIndex);
-                
-                // Move to next position
-                globalRotationState.currentWorkIndex++;
-                
-                // If we've completed a full cycle (3 positions), advance all masters
-                if (globalRotationState.currentWorkIndex >= 3) {
-                    globalRotationState.currentWorkIndex = 0;
-                    globalRotationState.currentRotationCycle++;
-                    
-                    // Advance all masters by 3 works
-                    Object.keys(masterWorksRotation).forEach(masterId => {
-                        masterWorksRotation[masterId].currentIndex += 3;
-                        console.log(`Мастер ${masterId}: currentIndex = ${masterWorksRotation[masterId].currentIndex}`);
-                    });
-                }
-            }, 3000); // 3 seconds interval
-        }
-
-        // Stop global rotation
-        function stopGlobalRotation() {
-            if (globalRotationState.rotationInterval) {
-                clearInterval(globalRotationState.rotationInterval);
-                globalRotationState.rotationInterval = null;
-                console.log('Ротация остановлена');
-            }
-        }
-
-        // Initialize all cards with first 3 works
-        function initializeAllCards() {
-            console.log('Инициализация карточек с первыми 3 работами');
-            
-            Object.keys(masterWorksRotation).forEach(masterId => {
-                const works = getCurrentWorks(masterId);
-                const master = masterData[masterId];
-                
-                const masterCard = document.querySelector(`[onclick*="openMasterGallery('${masterId}')"]`);
-                if (masterCard) {
-                    const workImages = masterCard.querySelectorAll('.aspect-square img');
-                    works.forEach((workIndex, position) => {
-                        if (workImages[position]) {
-                            const extension = master.extensions[position] || 'jpg';
-                            workImages[position].src = `gallery/${masterId}/${masterId}-work-${workIndex}.${extension}`;
-                            workImages[position].loading = 'lazy';
-                        }
-                    });
-                    console.log(`Инициализирована карточка ${masterId}: работы ${works.join(', ')}`);
-                }
-            });
-        }
-
-        // Initialize rotation
-        function initializeRotation() {
-            console.log('Инициализация ротации работ');
-            initializeAllCards();
-            
-            // Start rotation after a short delay
-            setTimeout(() => {
-                startGlobalRotation();
-            }, 1000);
-        }
-
-        // Make functions globally available for debugging
-        window.startGlobalRotation = startGlobalRotation;
-        window.stopGlobalRotation = stopGlobalRotation;
-        window.updateSinglePositionOnAllCards = updateSinglePositionOnAllCards;
-        window.initializeAllCards = initializeAllCards;
-        window.getCurrentWorks = getCurrentWorks;
-        window.initializeRotation = initializeRotation;
-
-        // Start rotation when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM загружен, инициализация ротации');
-            initializeRotation();
-        });
-
-        // Pause rotation when page is not visible
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                stopGlobalRotation();
-            } else {
-                setTimeout(startGlobalRotation, 500);
-            }
-        });
-
-        // Pause rotation when scrolling
-        let scrollTimeout;
-        window.addEventListener('scroll', function() {
-            stopGlobalRotation();
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                startGlobalRotation();
-            }, 1000);
-        });
-
-        // Force start rotation if not started after 2 seconds
-        setTimeout(() => {
-            if (!globalRotationState.rotationInterval) {
-                console.log('Принудительный запуск ротации');
-                initializeRotation();
-            }
-        }, 2000);
-    </script>
 </body>
 </html>
